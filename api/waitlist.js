@@ -30,8 +30,8 @@ module.exports = async function handler(req, res) {
 
   try {
     const { error } = await resend.emails.send({
-      from: 'White Mirror <noreply@whitemirrorjournal.com>',
-      to: ['hello@whitemirrorjournal.com'],
+      from: 'White Mirror <noreply@whitemirrorlabs.com>',
+      to: ['hello@whitemirrorlabs.com'],
       reply_to: email,
       subject: `New Waitlist Submission — ${name}`,
       html: `
@@ -52,7 +52,7 @@ module.exports = async function handler(req, res) {
               <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 14px;">${phone}</td>
             </tr>` : ''}
           </table>
-          <p style="margin-top: 24px; font-size: 12px; color: #aeaeb2;">Submitted via whitemirrorjournal.com</p>
+          <p style="margin-top: 24px; font-size: 12px; color: #aeaeb2;">Submitted via whitemirrorlabs.com</p>
         </div>
       `,
     });
