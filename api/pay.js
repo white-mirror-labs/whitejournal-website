@@ -1,4 +1,4 @@
-const XPAY_BASE = 'https://community.xpay.app/api/v1';
+const XPAY_BASE = process.env.XPAY_BASE_URL || 'https://staging.xpay.app/api/v1';
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
