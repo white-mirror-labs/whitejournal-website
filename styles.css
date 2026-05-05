@@ -825,6 +825,20 @@ body {
   align-items: start;
 }
 
+/* Product image */
+.shop-img-wrap {
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.shop-journal-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Product column */
 .shop-eyebrow {
   font-family: var(--font-body);
