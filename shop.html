@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Buy the White Mirror Journal — 90 days. Five phases. One transformation. 499 EGP." />
+  <meta property="og:title" content="Buy — White Mirror Journal" />
+  <meta property="og:description" content="90 days. Five phases. One transformation. 499 EGP." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.whitemirrorlabs.com/shop" />
+  <title>Buy — White Mirror Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">WHITE MIRROR</a>
+      <div class="nav-links">
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="index.html#method"   class="nav-link">Method</a>
+        <a href="index.html#phases"   class="nav-link">90 Days</a>
+        <a href="shop.html"           class="nav-link" style="color: var(--ink); font-weight: 500;">Shop</a>
+      </div>
+      <a href="shop.html" class="nav-cta">Buy Now</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html#features" class="mobile-link">Features</a>
+      <a href="index.html#method"   class="mobile-link">Method</a>
+      <a href="index.html#phases"   class="mobile-link">90 Days</a>
+      <a href="shop.html"           class="mobile-link">Shop</a>
+      <a href="shop.html"           class="mobile-cta">Buy Now</a>
+    </div>
+  </nav>
+
+  <!-- SHOP -->
+  <section class="shop-section">
+    <div class="container">
+      <div class="shop-layout">
+
+        <!-- LEFT: Product -->
+        <div class="shop-product">
+          <p class="shop-eyebrow">White Mirror Journal</p>
+          <h1 class="shop-title">The journal that holds<br /><em>no mercy.</em></h1>
+          <p class="shop-desc">
+            A 90-day guided practice for radical self-honesty. Structured across five phases, every page is designed to take you somewhere you haven't been willing to go — clearly, deliberately, and without softening it.
+          </p>
+
+          <ul class="shop-includes">
+            <li>
+              <span class="shop-check">✓</span>
+              <span>90 structured daily entries across five phases</span>
+            </li>
+            <li>
+              <span class="shop-check">✓</span>
+              <span>M.I.R.R.O.R. framework woven into every spread</span>
+            </li>
+            <li>
+              <span class="shop-check">✓</span>
+              <span>Phase-opening guides and intention-setting pages</span>
+            </li>
+            <li>
+              <span class="shop-check">✓</span>
+              <span>End-of-phase reflection and review prompts</span>
+            </li>
+            <li>
+              <span class="shop-check">✓</span>
+              <span>Companion app — iOS, Android, and web</span>
+            </li>
+          </ul>
+
+          <div class="shop-price-block">
+            <span class="shop-price-amount">499</span>
+            <span class="shop-price-currency">EGP</span>
+          </div>
+
+          <p class="shop-delivery-note">Free shipping within Egypt.</p>
+        </div>
+
+        <!-- RIGHT: Order Form -->
+        <div class="shop-form-wrap">
+          <div class="shop-form-card">
+            <p class="shop-form-heading">Order details</p>
+
+            <form id="shop-form" class="shop-form" novalidate>
+
+              <div class="shop-field-row">
+                <div class="shop-field">
+                  <label for="s-name" class="shop-label">Full Name</label>
+                  <input type="text" id="s-name" name="name" placeholder="Your full name" required class="shop-input" autocomplete="name" />
+                </div>
+              </div>
+
+              <div class="shop-field-row">
+                <div class="shop-field">
+                  <label for="s-email" class="shop-label">Email Address</label>
+                  <input type="email" id="s-email" name="email" placeholder="your@email.com" required class="shop-input" autocomplete="email" />
+                </div>
+              </div>
+
+              <div class="shop-field-row">
+                <div class="shop-field">
+                  <label for="s-phone" class="shop-label">Phone Number</label>
+                  <input type="tel" id="s-phone" name="phone" placeholder="+201001234567" required class="shop-input" autocomplete="tel" />
+                  <span class="shop-hint">Include country code — e.g. +201001234567</span>
+                </div>
+              </div>
+
+              <div class="shop-field-row">
+                <div class="shop-field">
+                  <label for="s-address" class="shop-label">Street Address</label>
+                  <input type="text" id="s-address" name="address" placeholder="Building, street, area" required class="shop-input" autocomplete="street-address" />
+                </div>
+              </div>
+
+              <div class="shop-field-row shop-field-row--two">
+                <div class="shop-field">
+                  <label for="s-city" class="shop-label">City</label>
+                  <input type="text" id="s-city" name="city" placeholder="City" required class="shop-input" autocomplete="address-level2" />
+                </div>
+                <div class="shop-field">
+                  <label for="s-governorate" class="shop-label">Governorate</label>
+                  <select id="s-governorate" name="governorate" required class="shop-input shop-select">
+                    <option value="" disabled selected>Select</option>
+                    <option>Cairo</option>
+                    <option>Giza</option>
+                    <option>Alexandria</option>
+                    <option>Qalyubia</option>
+                    <option>Sharqia</option>
+                    <option>Dakahlia</option>
+                    <option>Beheira</option>
+                    <option>Gharbia</option>
+                    <option>Monufia</option>
+                    <option>Kafr El Sheikh</option>
+                    <option>Damietta</option>
+                    <option>Port Said</option>
+                    <option>Ismailia</option>
+                    <option>Suez</option>
+                    <option>North Sinai</option>
+                    <option>South Sinai</option>
+                    <option>Beni Suef</option>
+                    <option>Fayyum</option>
+                    <option>Minya</option>
+                    <option>Asyut</option>
+                    <option>Sohag</option>
+                    <option>Qena</option>
+                    <option>Luxor</option>
+                    <option>Aswan</option>
+                    <option>Red Sea</option>
+                    <option>Matruh</option>
+                    <option>New Valley</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="shop-error" class="shop-error hidden"></div>
+
+              <button type="submit" id="shop-submit" class="shop-submit-btn">
+                <span id="shop-submit-text">Pay 499 EGP</span>
+              </button>
+
+              <div class="shop-secure-row">
+                <span class="shop-secure-icon">🔒</span>
+                <span class="shop-secure-text">Secured by XPay &middot; Card &amp; Apple Pay</span>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">WHITE MIRROR</span>
+        <p class="footer-tagline">A guided journal system for people who are done<br />running from themselves.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <span class="footer-col-label">Practice</span>
+          <a href="index.html#method"   class="footer-link">The M.I.R.R.O.R. Method</a>
+          <a href="index.html#phases"   class="footer-link">The 90 Days</a>
+          <a href="index.html#features" class="footer-link">The App</a>
+          <a href="index.html#contact"  class="footer-link">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Get Started</span>
+          <a href="shop.html"           class="footer-link">Buy the Journal</a>
+          <a href="mailto:hello@whitemirrorlabs.com" class="footer-link">hello@whitemirrorlabs.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">Copyright &copy; 2026 White Mirror. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
+        <a href="terms.html"   class="footer-legal-link">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('shop-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const btn      = document.getElementById('shop-submit');
+      const btnText  = document.getElementById('shop-submit-text');
+      const errorEl  = document.getElementById('shop-error');
+
+      const name       = document.getElementById('s-name').value.trim();
+      const email      = document.getElementById('s-email').value.trim();
+      const phone      = document.getElementById('s-phone').value.trim();
+      const address    = document.getElementById('s-address').value.trim();
+      const city       = document.getElementById('s-city').value.trim();
+      const governorate = document.getElementById('s-governorate').value;
+
+      errorEl.textContent = '';
+      errorEl.classList.add('hidden');
+
+      if (!name || !email || !phone || !address || !city || !governorate) {
+        errorEl.textContent = 'Please fill in all fields.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      btnText.textContent = 'Processing…';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/pay', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, address, city, governorate }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.iframe_url) {
+          window.location.href = data.iframe_url;
+        } else {
+          errorEl.textContent = data.error || 'Something went wrong. Please try again.';
+          errorEl.classList.remove('hidden');
+          btnText.textContent = 'Pay 499 EGP';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        errorEl.textContent = 'Network error. Please check your connection and try again.';
+        errorEl.classList.remove('hidden');
+        btnText.textContent = 'Pay 499 EGP';
+        btn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>

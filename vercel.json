@@ -8,7 +8,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://code.tidio.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.vercel.app https://api.resend.com;"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://code.tidio.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.vercel.app https://api.resend.com; frame-src https://community.xpay.app https://staging.xpay.app;"
         },
         {
           "key": "X-Frame-Options",
