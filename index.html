@@ -61,7 +61,7 @@
         <a href="#contact" class="btn-primary">Join the Waitlist</a>
         <a href="#features" class="btn-ghost">See what's inside</a>
       </div>
-      <p class="hero-notice">The journal is currently in production. Submit your wishlist to be among the first to receive it.</p>
+      <p class="hero-notice">The journal is available now, shipping across Egypt. The companion app opens soon — join the waitlist for early access.</p>
     </div>
   </section>
 
@@ -215,13 +215,13 @@
   <!-- CTA BAND -->
   <section class="cta-band">
     <div class="container">
-      <p class="section-label" style="color: rgba(255,255,255,0.4);">Coming Soon</p>
+      <p class="section-label" style="color: rgba(255,255,255,0.4);">The Foundation: Discover Yourself</p>
       <h2 class="section-title">Ninety days from now,<br /><em>you'll know yourself.</em></h2>
       <p class="section-sub" style="color: rgba(255,255,255,0.5); margin-top: 1.25rem;">
-        The journal and companion app. A complete system, subscription based.
+        The journal and companion app. One complete 90-day system.
       </p>
-      <a href="#contact" class="btn-primary">Join the Waitlist</a>
-      <p class="cta-band-sub">Journal in production. App on web, iOS and Android.</p>
+      <a href="shop.html" class="btn-primary">Buy the Journal</a>
+      <p class="cta-band-sub">Journal shipping now across Egypt. Companion app on web, iOS and Android — opening soon.</p>
     </div>
   </section>
 
@@ -232,7 +232,7 @@
         <div class="waitlist-header">
           <p class="section-label">Early Access</p>
           <h2 class="section-title">Join the Waitlist.</h2>
-          <p class="section-sub">The journal is in production. Be among the first to receive it when it ships.</p>
+          <p class="section-sub">The journal ships now. The companion app opens soon — join the list to be among the first inside.</p>
         </div>
         <form class="waitlist-form" id="waitlist-form">
           <div class="waitlist-row">
@@ -249,13 +249,13 @@
             <label for="wl-phone" class="waitlist-label">Phone Number <span class="waitlist-optional">(optional)</span></label>
             <input type="tel" id="wl-phone" name="phone" placeholder="+20 000 000 0000" class="waitlist-input" />
           </div>
-          <button type="submit" class="btn-primary waitlist-submit" id="waitlist-submit">Submit Wishlist</button>
-          <p class="waitlist-notice">No spam. Only meaningful updates about your journal.</p>
+          <button type="submit" class="btn-primary waitlist-submit" id="waitlist-submit">Join the Waitlist</button>
+          <p class="waitlist-notice">No spam. Only meaningful updates about your practice.</p>
         </form>
         <div class="waitlist-success hidden" id="waitlist-success">
           <div class="waitlist-success-icon">✦</div>
           <h3>You're on the list.</h3>
-          <p>We'll reach out as soon as your journal is ready to ship.</p>
+          <p>We'll reach out the moment the companion app opens for early access.</p>
         </div>
       </div>
     </div>
@@ -347,12 +347,12 @@
           document.getElementById('waitlist-form').classList.add('hidden');
           document.getElementById('waitlist-success').classList.remove('hidden');
         } else {
-          btn.textContent = 'Submit Wishlist';
+          btn.textContent = 'Join the Waitlist';
           btn.disabled = false;
           alert('Something went wrong. Please email us at hello@whitemirrorlabs.com');
         }
       } catch (err) {
-        btn.textContent = 'Submit Wishlist';
+        btn.textContent = 'Join the Waitlist';
         btn.disabled = false;
         alert('Something went wrong. Please email us at hello@whitemirrorlabs.com');
       }
