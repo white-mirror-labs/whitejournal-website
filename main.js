@@ -33,13 +33,14 @@
   });
 
   /* ── Fade-in on scroll ── */
-  if ('IntersectionObserver' in window) {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
     var style = document.createElement('style');
     style.textContent = '.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; } .reveal.visible { opacity: 1; transform: none; }';
     document.head.appendChild(style);
 
     document.querySelectorAll(
-      '.mirror-item, .journal-feature, .app-feature, .phase-item, .contact-block'
+      '.journal-copy, .journal-visual, .feature-card, .mirror-item, .phase-card, .contact-block'
     ).forEach(function (el) {
       el.classList.add('reveal');
     });

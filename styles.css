@@ -349,7 +349,7 @@ body {
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
   background: var(--border);
   border-radius: var(--radius-lg);
@@ -1111,6 +1111,139 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════
+   THE JOURNAL — flagship product section
+   ═══════════════════════════════════════════════════════ */
+.journal-section { background: var(--bg-warm); }
+
+.journal-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+  margin-top: 3.5rem;
+}
+
+.journal-kicker {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  margin-bottom: 1.1rem;
+}
+
+.journal-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+}
+
+.journal-title em { font-style: italic; }
+
+.journal-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--secondary);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.75rem;
+}
+
+.journal-meta {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.journal-meta li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--secondary);
+  line-height: 1.5;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.journal-meta li::before {
+  content: '—';
+  color: var(--quaternary);
+  flex-shrink: 0;
+}
+
+.journal-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.journal-note {
+  margin-top: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--tertiary);
+  line-height: 1.6;
+}
+
+.journal-visual {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.journal-anim {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.journal-film {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.journal-film[data-ready="1"] { opacity: 1; pointer-events: auto; }
+
+/* ── Journal animation keyframes ── */
+@keyframes jm-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+@keyframes jm-ripple  { 0% { transform: scale(0.25); opacity: 0.5; } 70% { opacity: 0; } 100% { transform: scale(1.7); opacity: 0; } }
+@keyframes jm-shine   { 0% { transform: translateX(-46px); } 50% { transform: translateX(46px); } 100% { transform: translateX(-46px); } }
+@keyframes jm-draw    { 0% { stroke-dashoffset: 250; } 55%, 100% { stroke-dashoffset: 0; } }
+@keyframes jm-dot     { 0% { fill: #ffffff; stroke: var(--border-mid); } 9% { fill: var(--ink); stroke: var(--ink); } 90% { fill: var(--ink); stroke: var(--ink); } 100% { fill: #ffffff; stroke: var(--border-mid); } }
+
+.jm-breathe { transform-box: fill-box; transform-origin: center; animation: jm-breathe 5s ease-in-out infinite; }
+.jm-ripple  { transform-box: fill-box; transform-origin: center; animation: jm-ripple 3.6s ease-out infinite; }
+.jm-shine   { animation: jm-shine 4.2s ease-in-out infinite; }
+.jm-draw    { stroke-dasharray: 250; animation: jm-draw 6s ease-in-out infinite; }
+.jm-dot     { animation: jm-dot 6s ease-in-out infinite; }
+.jm-d2 { animation-delay: 0.6s; }
+.jm-d3 { animation-delay: 1.2s; }
+.jm-d4 { animation-delay: 1.8s; }
+.jm-d5 { animation-delay: 2.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jm-breathe, .jm-ripple, .jm-shine, .jm-draw, .jm-dot { animation: none !important; }
+  .jm-ripple { opacity: 0 !important; }
+  .jm-dot  { fill: var(--ink) !important; stroke: var(--ink) !important; }
+  .jm-draw { stroke-dashoffset: 0 !important; }
+}
+
+/* ═══════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
@@ -1127,6 +1260,10 @@ body {
   .nav-hamburger { display: flex; }
 
   .section { padding: 5rem 0; }
+
+  .journal-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .journal-visual { order: -1; }
+  .journal-actions { gap: 1rem; }
 
   .features-grid  { grid-template-columns: 1fr; }
   .mirror-grid    { grid-template-columns: repeat(2, 1fr); }
