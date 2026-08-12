@@ -218,6 +218,26 @@
 
   <script src="main.js"></script>
   <script>
+    // The app opens this page as /shop?uid=<supabase-id>&email=<address>.
+    // The uid is what lets a payment made here unlock that account: it is sent
+    // to /api/pay, recorded against the order, and read by the app's payment
+    // callback. Someone arriving from a search engine simply has no uid — the
+    // order still works, and they unlock with the printed serial instead.
+    const params = new URLSearchParams(window.location.search);
+    const appUid = params.get('uid') || '';
+    const appEmail = params.get('email') || '';
+    if (appEmail) {
+      const emailField = document.getElementById('s-email');
+      emailField.value = appEmail;
+      emailField.readOnly = true;
+      emailField.setAttribute('aria-describedby', 's-email-note');
+      const note = document.createElement('p');
+      note.id = 's-email-note';
+      note.className = 'shop-hint';
+      note.textContent = 'Using the email on your White Mirror account.';
+      emailField.insertAdjacentElement('afterend', note);
+    }
+
     document.getElementById('shop-form').addEventListener('submit', async function (e) {
       e.preventDefault();
 
@@ -248,7 +268,10 @@
         const res = await fetch('/api/pay', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, phone, address, city, governorate }),
+          body: JSON.stringify({
+            name, email, phone, address, city, governorate,
+            uid: appUid || undefined,
+          }),
         });
 
         const data = await res.json();
