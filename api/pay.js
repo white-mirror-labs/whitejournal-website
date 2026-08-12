@@ -72,29 +72,45 @@ module.exports = async function handler(req, res) {
     // in-app purchase; this is simply the other till.
     const orderToken = randomUUID();
     const admin = supabaseAdmin();
-    if (admin) {
-      const { error: insertErr } = await admin.from('pending_payments').insert({
-        order_token: orderToken,
-        user_id: uid,
-        product: 'journal',
-        quantity: 1,
-        amount_egp: 499,
-      });
-      // Delivery details deliberately stay out of this row: the columns that
-      // would hold them ship in a migration that is not applied, and the shop
-      // is the system of record for fulfilment anyway — name, phone and
-      // address already travel to XPay as billing data and custom fields.
-      if (insertErr) {
-        // No row means the callback would refuse to grant, so a customer would
-        // pay and stay locked out. Refuse to take the money instead.
-        console.error('pay: pending_payments insert failed:', insertErr.message);
-        return res.status(500).json({ error: 'Could not start payment' });
-      }
-    } else {
+    if (!admin) {
       // Without Supabase configured nothing can be unlocked afterwards. Selling
       // anyway would take money for an app that stays shut.
       console.error('pay: Supabase env not configured — refusing to sell');
       return res.status(500).json({ error: 'Payment service not configured' });
+    }
+
+    // Delivery details deliberately stay out of this row: the columns that
+    // would hold them ship in a migration that is not applied, and the shop is
+    // the system of record for fulfilment anyway — name, phone and address
+    // already travel to XPay as billing data and custom fields.
+    const orderRow = {
+      order_token: orderToken,
+      product: 'journal',
+      quantity: 1,
+      amount_egp: 499,
+    };
+
+    let { error: insertErr } = await admin
+      .from('pending_payments')
+      .insert({ ...orderRow, user_id: uid });
+
+    // user_id is a foreign key into auth.users. A uid that no longer resolves —
+    // a deleted account, a stale link someone kept — must not cost us the sale:
+    // record the order unattributed and let them unlock with the printed serial.
+    if (insertErr && uid) {
+      console.error(
+        `pay: insert with uid ${uid} failed (${insertErr.message}); retrying unattributed`,
+      );
+      ({ error: insertErr } = await admin
+        .from('pending_payments')
+        .insert(orderRow));
+    }
+
+    if (insertErr) {
+      // No row means the callback would refuse to grant, so a customer would
+      // pay and stay locked out. Refuse to take the money instead.
+      console.error('pay: pending_payments insert failed:', insertErr.message);
+      return res.status(500).json({ error: 'Could not start payment' });
     }
 
     // Step 3: create transaction
