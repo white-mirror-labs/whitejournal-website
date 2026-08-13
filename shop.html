@@ -276,8 +276,8 @@
 
         const data = await res.json();
 
-        if (res.ok && data.iframe_url) {
-          window.location.href = data.iframe_url;
+        if (res.ok && data.checkout_url) {
+          window.location.href = data.checkout_url;
         } else {
           errorEl.textContent = data.error || 'Something went wrong. Please try again.';
           errorEl.classList.remove('hidden');
