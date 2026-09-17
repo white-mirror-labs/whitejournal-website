@@ -9,8 +9,16 @@
   --ink:        #0a0a0a;
   --graphite:   #1d1d1f;
   --secondary:  #515154;
-  --tertiary:   #86868b;
-  --quaternary: #aeaeb2;
+  /* --tertiary and --quaternary carry meaning-bearing text, so both must clear
+     WCAG AA (4.5:1) on --bg AND --bg-warm. Darkened from the original Apple greys
+     (#86868b ~3.5:1, #aeaeb2 ~2.3:1 — both fail) to warm-neutral greys on the
+     border-mid/border ramp. Matches lib/core/theme/app_colors.dart in the app:
+     medium/#676563 ~5.5:1, muted/#747270 ~4.6:1. Keep these two in sync. */
+  --tertiary:   #676563;
+  --quaternary: #747270;
+  /* Light-on-dark equivalents for --ink surfaces (cta-band, phone header). */
+  --on-dark:        rgba(255,255,255,0.88);
+  --on-dark-muted:  rgba(255,255,255,0.62);
   --border:     #e8e6e1;
   --border-mid: #d1cec9;
   --surface:    #f5f5f7;
@@ -30,6 +38,10 @@
   --radius-sm:  12px;
   --radius-md:  18px;
   --radius-lg:  28px;
+
+  /* Motion — one easing curve for every reveal on the page. */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-dur: 0.8s;
 }
 
 html { scroll-behavior: smooth; font-size: 17px; }
@@ -78,6 +90,24 @@ body {
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom-color: rgba(0,0,0,0.08);
+}
+
+/* Reading-progress rule, pinned to the bottom edge of the nav. */
+.scroll-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: transparent;
+  overflow: hidden;
+}
+
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
 .nav-inner {
@@ -227,6 +257,9 @@ body {
   font-style: italic;
 }
 
+/* Each line reveals on its own beat — see the stagger in main.js. */
+.hero-line { display: block; }
+
 .hero-sub {
   font-family: var(--font-body);
   font-size: clamp(0.9rem, 1.4vw, 1.05rem);
@@ -347,34 +380,20 @@ body {
   margin-bottom: 4rem;
 }
 
-.features-grid {
+/* Two columns: the four tab blurbs, and a mockup of the shipped Today screen. */
+.app-showcase {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  background: var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.feature-card {
-  background: var(--bg-warm);
-  padding: 2.5rem 2rem;
-  transition: background 0.2s ease;
-}
-
-.feature-card:hover { background: var(--surface); }
-
-.feature-icon {
-  width: 44px;
-  height: 44px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  display: flex;
+  grid-template-columns: 1fr auto;
+  gap: 4.5rem;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  margin-bottom: 1.25rem;
+}
+
+.app-blurbs {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  max-width: 380px;
 }
 
 .feature-tab {
@@ -525,7 +544,7 @@ body {
 }
 
 .cta-band .section-sub {
-  color: rgba(255,255,255,0.55);
+  color: var(--on-dark-muted);
 }
 
 .cta-band .btn-primary {
@@ -539,7 +558,7 @@ body {
 .cta-band-sub {
   margin-top: 1rem;
   font-size: 13px;
-  color: rgba(255,255,255,0.3);
+  color: var(--on-dark-muted);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1244,10 +1263,330 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════
+   GLASS PILL
+   Frosted surface. Only legible over content — on a plain
+   --bg / --bg-warm section it reads as nothing, so the light
+   variant carries a --surface fill and a --border edge as well.
+   ═══════════════════════════════════════════════════════ */
+.glass-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 100px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-pill-light {
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  border: 1px solid var(--border);
+  color: var(--tertiary);
+}
+
+.glass-pill-dark {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--on-dark);
+}
+
+/* ═══════════════════════════════════════════════════════
+   APP PHONE — mockup of the shipped Today screen
+   Mirrors the real surface: a light scaffold, the weekday as
+   the title, the feeling gate, the Vision card, and the
+   floating glass tab bar. No dark chrome anywhere.
+   ═══════════════════════════════════════════════════════ */
+.app-phone-wrap { display: flex; justify-content: center; }
+
+.app-phone {
+  position: relative;
+  width: 300px;
+  height: 632px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 44px;
+  background: var(--bg-warm);
+  box-shadow: 0 0 0 8px var(--ink), 0 40px 80px rgba(10,10,10,0.28);
+  overflow: hidden;
+}
+
+/* ── Status bar ── */
+.app-phone-status {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 22px 2px;
+}
+
+.app-phone-time {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.app-phone-notch {
+  width: 68px;
+  height: 20px;
+  border-radius: 100px;
+  background: var(--ink);
+}
+
+.app-phone-indicators { display: flex; align-items: center; gap: 4px; }
+
+.app-phone-wifi {
+  width: 9px; height: 9px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(45deg);
+}
+
+.app-phone-battery {
+  width: 16px; height: 8px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+/* ── Header ── */
+.app-phone-head {
+  flex-shrink: 0;
+  padding: 10px 22px 0;
+}
+
+.app-phone-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.app-phone-wordmark {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.app-phone-wordmark small {
+  display: block;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--quaternary);
+}
+
+.app-phone-phase {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.app-phone-day {
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.app-phone-date {
+  font-size: 15px;
+  color: var(--secondary);
+  margin-top: 2px;
+}
+
+.app-phone-count {
+  font-size: 13px;
+  color: var(--secondary);
+  margin: 8px 0 6px;
+}
+
+.app-phone-progress {
+  height: 3px;
+  border-radius: 100px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.app-phone-progress span {
+  display: block;
+  height: 100%;
+  border-radius: 100px;
+  background: var(--secondary);
+}
+
+/* ── Scrolling body ── */
+.app-phone-scroll {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Bottom padding clears the floating tab bar, which overlays this area. */
+  padding: 14px 14px 76px;
+  overflow: hidden;
+}
+
+/* The feeling gate. Real glass here — it sits over the scaffold. */
+.app-phone-gate {
+  position: relative;
+  display: block;
+  padding: 20px 16px 26px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.app-phone-gate-label {
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  margin-bottom: 12px;
+}
+
+.app-phone-gate-hi {
+  font-size: 11px;
+  color: var(--secondary);
+  margin-bottom: 6px;
+}
+
+.app-phone-gate-q {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.app-phone-gate-cta {
+  font-size: 10px;
+  color: var(--tertiary);
+}
+
+.app-phone-chevron {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 8px; height: 8px;
+  border-top: 1.4px solid var(--border-mid);
+  border-left: 1.4px solid var(--border-mid);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Vision card. Placeholder tone — swap for the real greyscale photo. */
+.app-phone-vision {
+  position: relative;
+  flex: 1;
+  min-height: 120px;
+  max-height: 168px;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background:
+    linear-gradient(to top, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.12) 55%, rgba(10,10,10,0.28) 100%),
+    linear-gradient(140deg, #8f8d8a 0%, #59575400 40%, #3a3937 100%),
+    var(--secondary);
+}
+
+.app-phone-vision-label {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 3px;
+}
+
+.app-phone-vision-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.app-phone-row {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4px 14px;
+  border-top: 1px solid var(--border);
+}
+
+.app-phone-row-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.app-phone-spark {
+  width: 9px; height: 9px;
+  background: var(--quaternary);
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+}
+
+.app-phone-chevron-right {
+  width: 6px; height: 6px;
+  border-top: 1.2px solid var(--border-mid);
+  border-right: 1.2px solid var(--border-mid);
+  transform: rotate(45deg);
+}
+
+/* ── Floating glass tab bar ── */
+.app-phone-nav {
+  position: absolute;
+  left: 14px; right: 14px; bottom: 14px;
+  display: flex;
+  padding: 9px 4px;
+  border-radius: 100px;
+  background: color-mix(in srgb, var(--bg) 62%, transparent);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: 0 8px 24px rgba(10,10,10,0.10);
+}
+
+.app-phone-nav span {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 8px;
+  color: var(--quaternary);
+}
+
+.app-phone-nav svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.app-phone-nav .is-active {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.app-phone-nav .is-active svg {
+  fill: var(--ink);
+  stroke: var(--ink);
+}
+
+/* ═══════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .app-showcase  { gap: 3rem; }
   .mirror-grid   { grid-template-columns: repeat(3, 1fr); }
   .phases-grid   { grid-template-columns: repeat(3, 1fr); }
   .contact-grid  { grid-template-columns: 1fr 1fr; }
@@ -1265,7 +1604,9 @@ body {
   .journal-visual { order: -1; }
   .journal-actions { gap: 1rem; }
 
-  .features-grid  { grid-template-columns: 1fr; }
+  .app-showcase   { grid-template-columns: 1fr; gap: 3rem; justify-items: center; }
+  .app-blurbs     { order: 1; max-width: none; }
+  .app-phone-wrap { order: -1; }
   .mirror-grid    { grid-template-columns: repeat(2, 1fr); }
   .phases-grid    { grid-template-columns: 1fr; }
   .contact-grid   { grid-template-columns: 1fr; }
@@ -1288,4 +1629,10 @@ body {
 @media (max-width: 480px) {
   .mirror-grid { grid-template-columns: 1fr 1fr; }
   .hero-actions { flex-direction: column; align-items: center; }
+}
+
+/* The phone is a fixed 300x632 mockup; scale it rather than reflow its internals. */
+@media (max-width: 380px) {
+  .app-phone-wrap { height: 537px; }
+  .app-phone { transform: scale(0.85); transform-origin: top center; }
 }

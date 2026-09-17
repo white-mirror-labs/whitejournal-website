@@ -1,17 +1,34 @@
 (function () {
   'use strict';
 
-  /* ── Nav scroll state ── */
-  var nav = document.getElementById('nav');
-  function onScroll() {
-    if (window.scrollY > 20) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
+  /* ── Nav scroll state + reading progress ──
+     One rAF-throttled listener drives both. The progress fill is scaleX on a
+     pre-painted bar, so scrolling never triggers layout. */
+  var nav      = document.getElementById('nav');
+  var progress = document.getElementById('scroll-progress-fill');
+  var ticking  = false;
+
+  function paintScroll() {
+    ticking = false;
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 20);
+
+    if (progress) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+      progress.style.transform = 'scaleX(' + pct + ')';
     }
   }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(paintScroll);
+  }
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('resize', onScroll, { passive: true });
+  paintScroll();
 
   /* ── Hamburger ── */
   var hamburger   = document.getElementById('hamburger');
@@ -32,17 +49,37 @@
     });
   });
 
-  /* ── Fade-in on scroll ── */
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if ('IntersectionObserver' in window && !reduceMotion) {
+  /* ── Reveal on scroll ──
+     Injected from JS so that with JS off, or with reduced motion on, nothing is
+     ever left at opacity 0. Members of a group reveal in sequence: the delay is
+     baked in as a custom property at setup time, not recomputed while scrolling. */
+  if (document.documentElement.classList.contains('has-motion')) {
     var style = document.createElement('style');
-    style.textContent = '.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; } .reveal.visible { opacity: 1; transform: none; }';
+    style.textContent =
+      '.has-motion .reveal { opacity: 0; transform: translateY(var(--reveal-dist, 24px));' +
+      ' transition: opacity var(--reveal-dur) var(--ease-out), transform var(--reveal-dur) var(--ease-out);' +
+      ' transition-delay: var(--reveal-delay, 0ms); }' +
+      '.has-motion .reveal.visible { opacity: 1; transform: none; }';
     document.head.appendChild(style);
 
-    document.querySelectorAll(
-      '.journal-copy, .journal-visual, .feature-card, .mirror-item, .phase-card, .contact-block'
-    ).forEach(function (el) {
-      el.classList.add('reveal');
+    /* Each entry: [selector, per-item stagger in ms, travel distance]. Order
+       within a group follows document order. */
+    var GROUPS = [
+      ['.hero-kicker, .hero-headline .hero-line, .hero-sub, .hero-actions, .hero-notice', 120, '16px'],
+      ['.journal-copy, .journal-visual', 150, '24px'],
+      ['.app-blurb', 90, '24px'],
+      ['.app-phone-wrap', 0, '24px'],
+      ['.mirror-item', 100, '26px'],
+      ['.phase-card', 90, '26px'],
+      ['.contact-block', 90, '24px']
+    ];
+
+    GROUPS.forEach(function (group) {
+      document.querySelectorAll(group[0]).forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.setProperty('--reveal-delay', i * group[1] + 'ms');
+        el.style.setProperty('--reveal-dist', group[2]);
+      });
     });
 
     var io = new IntersectionObserver(function (entries) {

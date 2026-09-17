@@ -16,6 +16,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
+  <script>
+    /* Opt in to reveal animations before first paint, so above-the-fold content
+       is never painted visible and then snapped to opacity 0. Without this class
+       every .reveal element stays plainly visible — which is also what happens
+       with JS off or reduced motion on. */
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if ('IntersectionObserver' in window && !reduce) {
+        document.documentElement.classList.add('has-motion');
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -46,6 +58,7 @@
       <a href="shop.html" class="mobile-link">Shop</a>
       <a href="shop.html" class="mobile-cta">Pre-order</a>
     </div>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-fill"></span></div>
   </nav>
 
   <!-- HERO -->
@@ -53,8 +66,9 @@
     <div class="container">
       <p class="hero-kicker">White Mirror — The Journal &middot; The Foundation: Discover Yourself</p>
       <h1 class="hero-headline">
-        The most important conversation<br />
-        is the one <em>you postpone<br />with yourself.</em>
+        <span class="hero-line">The most important conversation</span>
+        <span class="hero-line">is the one <em>you postpone</em></span>
+        <span class="hero-line"><em>with yourself.</em></span>
       </h1>
       <p class="hero-sub">
         90 days. Five phases. One mirror that never lies.
@@ -101,11 +115,11 @@
             <title>White Mirror — The Journal</title>
             <desc>A journal that breathes, a mirror that ripples, and five phase markers filling from day 1 to day 90.</desc>
             <clipPath id="jmMirror"><circle cx="240" cy="172" r="46"/></clipPath>
-            <text x="240" y="46" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" letter-spacing="5" fill="#86868b">WHITE MIRROR</text>
+            <text x="240" y="46" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" letter-spacing="5" fill="var(--tertiary)">WHITE MIRROR</text>
             <g class="jm-breathe">
               <rect x="165" y="88" width="150" height="192" rx="9" fill="#ffffff" stroke="#d1cec9" stroke-width="1"/>
               <line x1="185" y1="92" x2="185" y2="276" stroke="#e8e6e1" stroke-width="1"/>
-              <circle class="jm-ripple" cx="240" cy="172" r="46" fill="none" stroke="#aeaeb2" stroke-width="1"/>
+              <circle class="jm-ripple" cx="240" cy="172" r="46" fill="none" stroke="var(--quaternary)" stroke-width="1"/>
               <circle cx="240" cy="172" r="46" fill="none" stroke="#0a0a0a" stroke-width="1.4"/>
               <g clip-path="url(#jmMirror)">
                 <rect class="jm-shine" x="232" y="120" width="16" height="104" fill="#ffffff" opacity="0.7" transform="rotate(22 240 172)"/>
@@ -113,7 +127,7 @@
             </g>
             <text x="240" y="322" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="17" fill="#515154">The mirror that never lies.</text>
             <line class="jm-draw" x1="140" y1="392" x2="340" y2="392" stroke="#0a0a0a" stroke-width="1.2"/>
-            <g font-family="Inter, system-ui, sans-serif" font-size="11" fill="#86868b" text-anchor="middle">
+            <g font-family="Inter, system-ui, sans-serif" font-size="11" fill="var(--tertiary)" text-anchor="middle">
               <text x="140" y="374">I</text><text x="190" y="374">II</text><text x="240" y="374">III</text><text x="290" y="374">IV</text><text x="340" y="374">V</text>
             </g>
             <circle class="jm-dot" cx="140" cy="392" r="7" fill="#ffffff" stroke="#d1cec9" stroke-width="1.4"/>
@@ -121,7 +135,7 @@
             <circle class="jm-dot jm-d3" cx="240" cy="392" r="7" fill="#ffffff" stroke="#d1cec9" stroke-width="1.4"/>
             <circle class="jm-dot jm-d4" cx="290" cy="392" r="7" fill="#ffffff" stroke="#d1cec9" stroke-width="1.4"/>
             <circle class="jm-dot jm-d5" cx="340" cy="392" r="7" fill="#ffffff" stroke="#d1cec9" stroke-width="1.4"/>
-            <text x="240" y="430" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" letter-spacing="1" fill="#86868b">Day 1 &#8594; Day 90</text>
+            <text x="240" y="430" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" letter-spacing="1" fill="var(--tertiary)">Day 1 &#8594; Day 90</text>
           </svg>
           <video class="journal-film" muted loop playsinline preload="none" aria-hidden="true"></video>
         </div>
@@ -140,34 +154,95 @@
         <p class="section-sub">Every screen built for one thing: going deeper into yourself.</p>
       </div>
 
-      <div class="features-grid">
+      <div class="app-showcase">
 
-        <div class="feature-card">
-          <div class="feature-icon">☀</div>
-          <p class="feature-tab">Today</p>
-          <h3 class="feature-title">Your day, distilled.</h3>
-          <p class="feature-desc">One prompt. Five moods. Space to write. Every entry encrypted end-to-end, yours alone. Scan your paper journal with the camera and it comes in too.</p>
+        <div class="app-blurbs">
+          <div class="app-blurb">
+            <p class="feature-tab">Today</p>
+            <h3 class="feature-title">Your day, distilled.</h3>
+            <p class="feature-desc">One prompt. Five moods. Space to write. Every entry is encrypted with a key of your own before it's stored. Scan your paper journal with the camera and it comes in too.</p>
+          </div>
+
+          <div class="app-blurb">
+            <p class="feature-tab">Map</p>
+            <h3 class="feature-title">See the whole arc.</h3>
+            <p class="feature-desc">Your 90 days as one map — every mood, grouped by phase. What you can't feel day to day becomes obvious across time.</p>
+          </div>
+
+          <div class="app-blurb">
+            <p class="feature-tab">Meditate</p>
+            <h3 class="feature-title">Breathe on purpose.</h3>
+            <p class="feature-desc">Guided, silent, or with music. One animated circle paces the breath for you. Curated ambient channels play through the whole session.</p>
+          </div>
+
+          <div class="app-blurb">
+            <p class="feature-tab">You</p>
+            <h3 class="feature-title">The full picture.</h3>
+            <p class="feature-desc">Your streak, your arc, your 90-day progress. AI Insights read across your entries and surface what's shifting — unlocking as your practice deepens.</p>
+          </div>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">▦</div>
-          <p class="feature-tab">Map</p>
-          <h3 class="feature-title">See the whole arc.</h3>
-          <p class="feature-desc">Your 90 days as one map — every mood, grouped by phase. What you can't feel day to day becomes obvious across time.</p>
-        </div>
+        <div class="app-phone-wrap">
+          <div class="app-phone" role="img"
+               aria-label="The White Mirror app on the Today tab: day 7 of 90 in Phase 1, a card asking how you are feeling today, the Vision card showing the life you're building, an Insights and Patterns row, and the Today, Map, Meditate and You tabs.">
 
-        <div class="feature-card">
-          <div class="feature-icon">○</div>
-          <p class="feature-tab">Meditate</p>
-          <h3 class="feature-title">Breathe on purpose.</h3>
-          <p class="feature-desc">Guided, silent, or with music. Three durations. One animated circle, 4-4-6 box breathing. Curated ambient channels play through the whole session.</p>
-        </div>
+            <div class="app-phone-status">
+              <span class="app-phone-time">4:55</span>
+              <span class="app-phone-notch"></span>
+              <span class="app-phone-indicators"><i class="app-phone-wifi"></i><i class="app-phone-battery"></i></span>
+            </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">◎</div>
-          <p class="feature-tab">You</p>
-          <h3 class="feature-title">The full picture.</h3>
-          <p class="feature-desc">Your streak, your arc, your 90-day progress. AI Insights read across your entries and surface what's shifting — unlocking as your practice deepens.</p>
+            <div class="app-phone-head">
+              <div class="app-phone-topline">
+                <span class="app-phone-wordmark">White Mirror<small>The Journal</small></span>
+                <span class="app-phone-phase">Phase 1</span>
+              </div>
+              <p class="app-phone-day">Wednesday</p>
+              <p class="app-phone-date">July 29</p>
+              <p class="app-phone-count">Day 7 of 90</p>
+              <div class="app-phone-progress"><span style="width: 7.8%;"></span></div>
+            </div>
+
+            <div class="app-phone-scroll">
+              <div class="glass-pill-light app-phone-gate">
+                <p class="app-phone-gate-label">The Foundation · Discover Yourself</p>
+                <p class="app-phone-gate-hi">Glad you showed up.</p>
+                <p class="app-phone-gate-q">How are you feeling today?</p>
+                <p class="app-phone-gate-cta">Swipe up to begin</p>
+                <span class="app-phone-chevron"></span>
+              </div>
+
+              <div class="app-phone-vision">
+                <p class="app-phone-vision-label">Vision</p>
+                <p class="app-phone-vision-title">The life you&rsquo;re building</p>
+              </div>
+
+              <div class="app-phone-row">
+                <span class="app-phone-row-label"><i class="app-phone-spark"></i>Insights &amp; Patterns</span>
+                <span class="app-phone-chevron-right"></span>
+              </div>
+            </div>
+
+            <div class="glass-pill app-phone-nav">
+              <span class="is-active">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></svg>
+                Today
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zm6-2v14m6-12v14"/></svg>
+                Map
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h14a3 3 0 1 1-3 3M3 16h8"/></svg>
+                Meditate
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3.2"/><path d="M6.2 18.5a6.2 6.2 0 0 1 11.6 0"/></svg>
+                You
+              </span>
+            </div>
+
+          </div>
         </div>
 
       </div>
@@ -181,38 +256,38 @@
     <div class="container">
       <p class="section-label">The Method</p>
       <h2 class="section-title">The M.I.R.R.O.R. Framework.</h2>
-      <p class="section-sub">Six dimensions of self-inquiry. Woven into every day of your 90.</p>
+      <p class="section-sub">Six steps, in order. Walked once a day, every day of your 90.</p>
 
       <div class="mirror-grid">
         <div class="mirror-item">
           <div class="mirror-letter">M</div>
-          <div class="mirror-word">Mindfulness</div>
-          <p class="mirror-desc">Present before the noise begins. Every session starts here.</p>
+          <div class="mirror-word">Mood</div>
+          <p class="mirror-desc">Arrive where you are. Name the honest feeling before the noise begins.</p>
         </div>
         <div class="mirror-item">
           <div class="mirror-letter">I</div>
-          <div class="mirror-word">Inquiry</div>
-          <p class="mirror-desc">The questions that make you stop. Those are the only ones that count.</p>
+          <div class="mirror-word">Identify</div>
+          <p class="mirror-desc">Name what you feel. The questions that make you stop are the only ones that count.</p>
         </div>
         <div class="mirror-item">
           <div class="mirror-letter">R</div>
-          <div class="mirror-word">Reflection</div>
-          <p class="mirror-desc">Looking back without flinching. Patterns only emerge when you look.</p>
+          <div class="mirror-word">Reflect</div>
+          <p class="mirror-desc">Sit with it honestly. Looking without flinching is where the pattern starts to show.</p>
         </div>
         <div class="mirror-item">
           <div class="mirror-letter">R</div>
-          <div class="mirror-word">Responsibility</div>
-          <p class="mirror-desc">Own your choices. No exceptions, no audience, no excuses.</p>
+          <div class="mirror-word">Reframe</div>
+          <p class="mirror-desc">See it from a new angle. Not a better story — a more accurate one.</p>
         </div>
         <div class="mirror-item">
           <div class="mirror-letter">O</div>
-          <div class="mirror-word">Openness</div>
-          <p class="mirror-desc">Honesty when honesty is the harder path. The practice only works if you do.</p>
+          <div class="mirror-word">Observe</div>
+          <p class="mirror-desc">Notice what shifted. Honesty when honesty is the harder path.</p>
         </div>
         <div class="mirror-item">
           <div class="mirror-letter">R</div>
-          <div class="mirror-word">Renewal</div>
-          <p class="mirror-desc">End each day with intention. Not perfection. Direction.</p>
+          <div class="mirror-word">Resolve</div>
+          <p class="mirror-desc">Carry one step forward. Not perfection. Direction.</p>
         </div>
       </div>
     </div>
@@ -255,7 +330,7 @@
         <div class="phase-card">
           <div class="phase-num">V</div>
           <p class="phase-days-label">Days 73 – 90</p>
-          <h3 class="phase-title">Rise</h3>
+          <h3 class="phase-title">Become</h3>
           <p class="phase-desc"><em>Self-awareness without action is autobiography.</em> The practice becomes the life. You choose one honest next step and live it. Day 90 isn't an ending — it's living from what you now know.</p>
         </div>
       </div>
@@ -265,7 +340,7 @@
   <!-- CTA BAND -->
   <section class="cta-band">
     <div class="container">
-      <p class="section-label" style="color: rgba(255,255,255,0.4);">The Foundation: Discover Yourself</p>
+      <p class="section-label" style="color: var(--on-dark-muted);">The Foundation: Discover Yourself</p>
       <h2 class="section-title">Ninety days from now,<br /><em>you'll know yourself.</em></h2>
       <p class="section-sub" style="color: rgba(255,255,255,0.5); margin-top: 1.25rem;">
         The journal and companion app. One complete 90-day system.
@@ -368,6 +443,7 @@
       <div class="footer-bottom-links">
         <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
         <a href="terms.html"   class="footer-legal-link">Terms of Use</a>
+        <a href="refund.html"  class="footer-legal-link">Refund Policy</a>
       </div>
     </div>
   </footer>
