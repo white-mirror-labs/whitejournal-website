@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.whitemirrorlabs.com/</loc>
+    <lastmod>2026-09-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/shop</loc>
+    <lastmod>2026-09-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/terms</loc>
+    <lastmod>2026-09-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/terms" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/terms-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/terms" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/terms-ar</loc>
+    <lastmod>2026-09-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/terms" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/terms-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/terms" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/privacy</loc>
+    <lastmod>2026-09-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/privacy-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/privacy" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/privacy-ar</loc>
+    <lastmod>2026-09-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/privacy-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/privacy" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/refund</loc>
+    <lastmod>2026-09-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/refund" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/refund-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/refund" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/refund-ar</loc>
+    <lastmod>2026-09-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/refund" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/refund-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/refund" />
+  </url>
+</urlset>

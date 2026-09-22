@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /shop-success
+
+Sitemap: https://www.whitemirrorlabs.com/sitemap.xml

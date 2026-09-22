@@ -2,6 +2,14 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Everything below is typed by an anonymous visitor and lands in an HTML email,
+// so it is escaped before interpolation; otherwise a "name" can carry markup or
+// links into the inbox.
+const escapeHtml = (value) =>
+  String(value).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  })[c]);
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -28,28 +36,32 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email address' });
   }
 
+  const safeName = escapeHtml(name).slice(0, 200);
+  const safeEmail = escapeHtml(email).slice(0, 320);
+  const safePhone = phone ? escapeHtml(phone).slice(0, 40) : '';
+
   try {
     const { error } = await resend.emails.send({
       from: 'White Mirror <noreply@whitemirrorlabs.com>',
       to: ['hello@whitemirrorlabs.com'],
       reply_to: email,
-      subject: `New Waitlist Submission — ${name}`,
+      subject: `New Waitlist Submission — ${String(name).replace(/[\r\n]+/g, ' ').slice(0, 100)}`,
       html: `
         <div style="font-family: sans-serif; max-width: 520px; margin: 0 auto; color: #0a0a0a;">
           <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">New Waitlist Submission</h2>
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 13px; color: #86868b; width: 100px;">Name</td>
-              <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 14px;">${name}</td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 14px;">${safeName}</td>
             </tr>
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 13px; color: #86868b;">Email</td>
-              <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 14px;"><a href="mailto:${email}" style="color: #0a0a0a;">${email}</a></td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 14px;"><a href="mailto:${safeEmail}" style="color: #0a0a0a;">${safeEmail}</a></td>
             </tr>
-            ${phone ? `
+            ${safePhone ? `
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 13px; color: #86868b;">Phone</td>
-              <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 14px;">${phone}</td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #e8e6e1; font-size: 14px;">${safePhone}</td>
             </tr>` : ''}
           </table>
           <p style="margin-top: 24px; font-size: 12px; color: #aeaeb2;">Submitted via whitemirrorlabs.com</p>

@@ -1,23 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>White Mirror</title>
-    <script type="text/javascript">
-      // 🔄 GitHub Pages SPA Hack
-      // This script checks if the current URL has a path (like /home) and
-      // redirects it to index.html with the path stored in a query parameter.
-      var pathSegmentsToKeep = 0;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
-    </script>
-  </head>
-  <body>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — White Mirror</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <style>
+    .nf { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+          text-align: center; padding: 6rem 2rem; gap: 1.5rem; }
+    .nf-title { font-family: var(--font-lora, Georgia, serif); font-size: clamp(2.25rem, 5vw, 3.25rem); line-height: 1.1; color: var(--ink); }
+    .nf-title em { font-style: italic; }
+    .nf-sub { color: var(--secondary); max-width: 32rem; line-height: 1.7; }
+    .nf-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  </style>
+</head>
+
+<body>
+  <main class="nf">
+    <span class="eyebrow">404</span>
+    <h1 class="nf-title">This page <em>isn't here.</em></h1>
+    <p class="nf-sub">The link may be old, or the address mistyped. Everything that matters is one step away.</p>
+    <div class="nf-actions">
+      <a href="/" class="btn-primary">Back to White Mirror</a>
+      <a href="/shop" class="btn-ghost">Pre-order the Journal</a>
+    </div>
+  </main>
+</body>
+
 </html>

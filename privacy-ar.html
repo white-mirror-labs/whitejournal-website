@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="سياسة الخصوصية لوايت ميرور لابز: ما نجمعه، وما يغادر جهازك، ومن يعالجه، ومدة الاحتفاظ به." />
+  <title>سياسة الخصوصية — وايت ميرور لابز</title>
+  <link rel="canonical" href="https://www.whitemirrorlabs.com/privacy-ar" />
+  <link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/privacy" />
+  <link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/privacy-ar" />
+  <link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/privacy" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="White Mirror" />
+  <meta property="og:locale" content="ar_EG" />
+  <meta property="og:url" content="https://www.whitemirrorlabs.com/privacy-ar" />
+  <meta property="og:title" content="سياسة الخصوصية — وايت ميرور لابز" />
+  <meta property="og:description" content="سياسة الخصوصية لوايت ميرور لابز: ما نجمعه، وما يغادر جهازك، ومن يعالجه، ومدة الاحتفاظ به." />
+  <meta property="og:image" content="https://www.whitemirrorlabs.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="White Mirror — The Journal, a guided 90-day journal" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="سياسة الخصوصية — وايت ميرور لابز" />
+  <meta name="twitter:description" content="سياسة الخصوصية لوايت ميرور لابز: ما نجمعه، وما يغادر جهازك، ومن يعالجه، ومدة الاحتفاظ به." />
+  <meta name="twitter:image" content="https://www.whitemirrorlabs.com/assets/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <style>
+    /* ── Legal page hero ── */
+    .pp-hero {
+      padding-top: calc(var(--nav-height) + 6rem);
+      padding-bottom: 6rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pp-hero-title {
+      font-family: var(--font-cormorant);
+      font-size: clamp(2.75rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .pp-hero-meta {
+      font-family: var(--font-lora);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--secondary);
+    }
+
+    /* ── Content area ── */
+    .pp-content {
+      padding: 8rem 0 12rem;
+    }
+
+    .pp-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Introduction ── */
+    .pp-intro {
+      font-family: var(--font-lora);
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--secondary);
+      line-height: 1.8;
+      margin-bottom: 6rem;
+      padding-bottom: 6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Sections ── */
+    .pp-section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pp-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .pp-section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .pp-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--quaternary);
+      text-transform: uppercase;
+      flex-shrink: 0;
+      padding-top: 0.2rem;
+    }
+
+    .pp-section-title {
+      font-family: var(--font-cormorant);
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .pp-body {
+      font-family: var(--font-dm);
+      font-size: 16px;
+      color: var(--secondary);
+      line-height: 1.8;
+    }
+
+    .pp-body + .pp-body {
+      margin-top: 1.25rem;
+    }
+
+    .pp-body strong {
+      color: var(--graphite);
+      font-weight: 500;
+    }
+
+    /* Sub-label */
+    .pp-sublabel {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      font-family: var(--font-dm);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .pp-sublabel:first-child {
+      margin-top: 0;
+    }
+
+    /* Lists */
+    .pp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-family: var(--font-dm);
+    }
+
+    .pp-list li {
+      font-size: 16px;
+      color: var(--secondary);
+      line-height: 1.7;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .pp-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--quaternary);
+      font-size: 14px;
+    }
+
+    /* Definition list */
+    .pp-def {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .pp-def-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 1rem;
+      font-size: 15px;
+      line-height: 1.7;
+      font-family: var(--font-dm);
+    }
+
+    .pp-def-term {
+      font-weight: 500;
+      color: var(--graphite);
+      padding-top: 0.05rem;
+    }
+
+    .pp-def-desc {
+      color: var(--secondary);
+    }
+
+    /* Closing note */
+    .pp-closing {
+      margin-top: 6rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-lora);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--tertiary);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    /* Contact block */
+    .pp-contact-block {
+      margin-top: 1.5rem;
+      padding: 2rem 2.5rem;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .pp-contact-block a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s ease;
+    }
+
+    .pp-contact-block a:hover {
+      border-color: var(--ink);
+    }
+
+    /* Inline link style */
+    .pp-link {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s ease;
+    }
+
+    .pp-link:hover {
+      border-color: var(--ink);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .pp-def-item {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+
+      .pp-def-term {
+        font-size: 14px;
+      }
+    }
+
+    /* ── Arabic / RTL ── */
+    html[dir="rtl"] body,
+    html[dir="rtl"] .pp-body,
+    html[dir="rtl"] .pp-list,
+    html[dir="rtl"] .pp-def-item,
+    html[dir="rtl"] .pp-sublabel { font-family: 'IBM Plex Sans Arabic', var(--font-dm), sans-serif; }
+    html[dir="rtl"] .pp-hero-title,
+    html[dir="rtl"] .pp-section-title { font-family: 'Noto Naskh Arabic', var(--font-cormorant), serif; letter-spacing: 0; }
+    html[dir="rtl"] .pp-intro,
+    html[dir="rtl"] .pp-hero-meta,
+    html[dir="rtl"] .pp-closing { font-family: 'Noto Naskh Arabic', var(--font-lora), serif; font-style: normal; }
+    html[dir="rtl"] .pp-sublabel,
+    html[dir="rtl"] .pp-num { letter-spacing: 0; }
+    html[dir="rtl"] .pp-body { line-height: 2; }
+    html[dir="rtl"] .pp-list li { padding-left: 0; padding-right: 1.25rem; }
+    html[dir="rtl"] .pp-list li::before { left: auto; right: 0; }
+    .ltr { direction: ltr; unicode-bidi: embed; }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════ NAV ═══════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" id="nav-logo">WHITE MIRROR</a>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html#journal"  class="nav-link">الدفتر</a>
+        <a href="index.html#features" class="nav-link">التطبيق</a>
+        <a href="index.html#method"   class="nav-link">المنهج</a>
+        <a href="index.html#phases"   class="nav-link">٩٠ يومًا</a>
+        <a href="index.html#contact"  class="nav-link">تواصل</a>
+        <a href="shop.html"           class="nav-link">المتجر</a>
+      </div>
+      <a href="shop.html" class="nav-cta" id="nav-cta">اطلب مسبقًا</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="القائمة" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html#journal"  class="mobile-link">الدفتر</a>
+      <a href="index.html#features" class="mobile-link">التطبيق</a>
+      <a href="index.html#method"   class="mobile-link">المنهج</a>
+      <a href="index.html#phases"   class="mobile-link">٩٠ يومًا</a>
+      <a href="index.html#contact"  class="mobile-link">تواصل</a>
+      <a href="shop.html"           class="mobile-link">المتجر</a>
+      <a href="shop.html"           class="mobile-cta">اطلب مسبقًا</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
+  <header class="pp-hero">
+    <div class="container">
+      <span class="eyebrow">قانوني</span>
+      <h1 class="pp-hero-title">سياسة الخصوصية</h1>
+      <p class="pp-hero-meta">سارية من ١٧ سبتمبر ٢٠٢٦ &nbsp;·&nbsp; آخر تحديث ٢٢ سبتمبر ٢٠٢٦ &nbsp;·&nbsp; <a href="privacy.html" class="pp-link" lang="en" hreflang="en">English</a></p>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════ CONTENT ═══════════════════════════════════════ -->
+  <main class="pp-content">
+    <div class="pp-inner">
+
+      <!-- مقدمة -->
+      <p class="pp-intro">
+        عالمك الداخلي مقدَّس. توضح هذه السياسة بدقة ما نجمعه، وما يغادر جهازك وإلى أين يذهب، وما لن نفعله به أبدًا.
+        وتستخدم التعريفات ذاتها الواردة في <a href="terms-ar.html" class="pp-link">الشروط والأحكام</a> و
+        <a href="refund-ar.html" class="pp-link">سياسة الاسترداد والإرجاع</a>.
+      </p>
+
+      <!-- 01 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">01</span>
+          <h2 class="pp-section-title">من نحن</h2>
+        </div>
+        <p class="pp-body">
+          <strong>وايت ميرور لابز</strong> مشروع تكنولوجي. نبني أدوات مدعومة بالذكاء الاصطناعي من أجل رفاه الإنسان،
+          مصمَّمة على أساس البساطة والتقليل &mdash; وهكذا أيضًا نتعامل مع البيانات: نجمع ما يحتاجه المنتج فعلًا، ولا نجمع
+          شيئًا لمجرد أنه قد يفيد لاحقًا.
+        </p>
+        <p class="pp-body">
+          المتحكم في بياناتك الشخصية هو مؤسس وايت ميرور لابز، الذي يديرها بصفته الشخصية بوصفه فردًا في جمهورية مصر
+          العربية، وعنوانه ١٢٨ حدائق دجلة، حدائق أكتوبر، الجيزة، مصر. و«وايت ميرور لابز» اسم تجاري وليست شركة مؤسسة
+          بعد، وسنخطرك قبل أن يغيّر التأسيس الجهة المتحكمة في بياناتك. ونتعامل مع البيانات الشخصية وفقًا للقانون المصري،
+          بما فيه قانون حماية البيانات الشخصية رقم ١٥١ لسنة ٢٠٢٠.
+        </p>
+        <p class="pp-body">
+          لأي أمر يتعلق بهذه السياسة، راسلنا على <a href="mailto:hello@whitemirrorlabs.com" class="pp-link ltr">hello@whitemirrorlabs.com</a>.
+        </p>
+      </div>
+
+      <!-- 02 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">02</span>
+          <h2 class="pp-section-title">النطاق والمصطلحات</h2>
+        </div>
+        <p class="pp-body" style="margin-bottom: 1.5rem;">
+          تشمل هذه السياسة الموقع والتطبيق وبيع الدفتر. والتعريفات هي المبينة في البند ٠٢ من
+          <a href="terms-ar.html" class="pp-link">الشروط</a>، وأهمها هنا:
+        </p>
+        <div class="pp-def">
+          <div class="pp-def-item">
+            <span class="pp-def-term">الموقع</span>
+            <span class="pp-def-desc"><span class="ltr">whitemirrorlabs.com</span>، بما فيه المتجر.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">التطبيق</span>
+            <span class="pp-def-desc">تطبيق وايت ميرور المرافق على iOS وAndroid، والنسخة الإلكترونية على <span class="ltr">app.whitemirrorlabs.com</span>.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الدفتر</span>
+            <span class="pp-def-desc">الدفتر المطبوع لمدة ٩٠ يومًا. وشراؤه هو ما ينشئ بيانات الطلب والتوصيل.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الفترة التجريبية</span>
+            <span class="pp-def-desc">أول ١٤ يومًا من عمر أي حساب جديد على التطبيق. ولا تتطلب أي بيانات دفع، فلا تنشئ أي بيانات فوترة على الإطلاق.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">تدويناتك</span>
+            <span class="pp-def-desc">تدويناتك وتأملاتك وحالاتك المزاجية. ويوضح البند ٠٥ كيفية حمايتها.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">03</span>
+          <h2 class="pp-section-title">ما نجمعه</h2>
+        </div>
+
+        <span class="pp-sublabel">عند تصفحك للموقع</span>
+        <p class="pp-body" style="margin-bottom: 1rem;">
+          لا شيء تقريبًا. <strong>الموقع لا يضع أي ملفات تعريف ارتباط (كوكيز)، ولا يشغّل أدوات تحليل، ولا يحمل أي أدوات
+          تتبع إعلانية أو اجتماعية.</strong> ويحتفظ مزوّد الاستضافة لدينا بسجلات الخادم المعتادة، التي تتضمن عنوان IP
+          والصفحة المطلوبة، لأغراض الأمان والاعتمادية.
+        </p>
+
+        <span class="pp-sublabel">عند طلبك للدفتر</span>
+        <ul class="pp-list">
+          <li>اسمك وبريدك الإلكتروني ورقم هاتفك</li>
+          <li>عنوان التوصيل: الشارع والمدينة والمحافظة</li>
+          <li>الطلب نفسه — المنتج والكمية والمبلغ وحالة الدفع، وحالة التوصيل بعد الشحن</li>
+        </ul>
+        <p class="pp-body" style="margin-top: 1rem;">
+          <strong>لا نتلقى رقم بطاقتك أبدًا.</strong> يتم الدفع على صفحة الدفع الخاصة بـ XPay، ولا يصلنا سوى ما يفيد
+          بنجاح الدفع أو عدمه.
+        </p>
+
+        <span class="pp-sublabel">عند استخدامك للتطبيق</span>
+        <ul class="pp-list">
+          <li>بيانات الحساب: البريد الإلكتروني، وكلمة مرور أو تسجيل دخول عبر Apple أو Google</li>
+          <li>بيانات الملف الشخصي التي تُدخلها: الاسم والهاتف وعنوان التوصيل لطلب مستقبلي وإجاباتك في خطوات البداية</li>
+          <li>تدويناتك والحالة المزاجية المسجلة معها</li>
+          <li>سجل ممارستك: جلسات التأمل وأيام الاستمرار والتقدم خلال التسعين يومًا</li>
+          <li>تقييمك لمدى فائدة «الرؤية»، لتكون التالية أدق</li>
+          <li>إذا استخدمت المزايا الاجتماعية، الروابط التي تنشئها والمجموعات التي تنضم إليها</li>
+        </ul>
+
+        <span class="pp-sublabel">البيانات الصحية، إذا سمحت بها</span>
+        <p class="pp-body">
+          يمكن للتطبيق قراءة بيانات النوم والخطوات والطاقة المبذولة ومعدل ضربات القلب ودقائق اليقظة الذهنية من Apple
+          Health أو Health Connect. <strong>وهذه الخاصية معطلة ما لم تمنح الإذن، ويمكنك سحبه في أي وقت من إعدادات
+          هاتفك.</strong> ويوضح البند ٠٦ الحد الصارم لما يمكن أن يُستخدم فيه أي منها.
+        </p>
+
+        <span class="pp-sublabel">عند تواصلك معنا</span>
+        <ul class="pp-list">
+          <li>ما تكتبه إلينا، والعنوان الذي تراسلنا منه</li>
+          <li>طلبات قائمة الانتظار: اسمك وبريدك الإلكتروني، ورقم هاتفك إن قدمته</li>
+        </ul>
+      </div>
+
+      <!-- 04 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">04</span>
+          <h2 class="pp-section-title">ما لا نفعله</h2>
+        </div>
+        <p class="pp-body" style="margin-bottom: 1.5rem;">
+          هذه التزامات لا تطلعات. وإن تغيّر أي منها، سنعلن ذلك قبل حدوثه.
+        </p>
+        <ul class="pp-list">
+          <li>لا نبيع بياناتك الشخصية ولا نؤجرها ولا نتاجر بها — أبدًا، ولأي جهة</li>
+          <li>لا نستخدم تدويناتك في تدريب نماذج التعلم الآلي، نماذجنا أو نماذج غيرنا</li>
+          <li>لا نستخدم تدويناتك في الإعلان أو الاستهداف أو التنميط</li>
+          <li>لا نشغّل أدوات تتبع إعلانية أو تسويقية على الموقع</li>
+          <li>لا نخزّن بيانات بطاقتك</li>
+          <li>لا نقرأ تدويناتك لتحسين المنتج؛ نقرأ الأرقام لا الكتابة</li>
+        </ul>
+      </div>
+
+      <!-- 05 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">05</span>
+          <h2 class="pp-section-title">كيف نحمي تدويناتك</h2>
+        </div>
+        <p class="pp-body">
+          <strong>تُشفَّر تدويناتك قبل تخزينها.</strong> لكل حساب مفتاح بيانات خاص به، وهذا المفتاح نفسه محفوظ مشفرًا
+          بسرّ رئيسي يُحتفظ به في مخزن آمن منفصل. ونسخة من قاعدة البيانات وحدها لا تكشف كتابات أي شخص.
+        </p>
+        <p class="pp-body">
+          وحدود ذلك عمليًا، بوضوح: المفتاح محفوظ لدينا لا على جهازك وحده، فهذه حماية قوية من تسريب قاعدة البيانات — لكنها
+          ليست تشفيرًا من طرف إلى طرف، وقد نُلزَم بأمر قانوني صحيح بتقديم بيانات. ويصف البند ٠٦ الحالة الروتينية الوحيدة
+          التي يغادر فيها نص التدوينة أنظمتنا.
+        </p>
+      </div>
+
+      <!-- 06 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">06</span>
+          <h2 class="pp-section-title">مزايا الذكاء الاصطناعي: ما يغادر جهازك</h2>
+        </div>
+        <p class="pp-body" style="margin-bottom: 1.5rem;">
+          ثلاث مزايا في التطبيق ترسل بيانات إلى مزوّد ذكاء اصطناعي، ولا تعمل أي منها إلا عندما تطلبها.
+        </p>
+        <div class="pp-def">
+          <div class="pp-def-item">
+            <span class="pp-def-term">الرؤى</span>
+            <span class="pp-def-desc">عندما تطلب «رؤية»، يُرسل نص التدوينات المقروءة إلى OpenAI التي تولّد التأمل وتعيده. ويُرسل النص لهذا الطلب فقط، ولا يُستخدم في تدريب أي نموذج.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">المسح الضوئي (OCR)</span>
+            <span class="pp-def-desc">عندما تصوّر صفحة مكتوبة بخط اليد، تُرسل الصورة إلى OpenAI لتحويلها إلى نص. ويتطلب المسح الضوئي الدفتر، وهو غير متاح خلال الفترة التجريبية.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">التأمل الموجّه</span>
+            <span class="pp-def-desc">تولّد OpenAI نصوص الجلسات وتنطقها ElevenLabs. ولا تدخل تدويناتك في ذلك.</span>
+          </div>
+        </div>
+        <p class="pp-body" style="margin-top: 2rem;">
+          <strong>أما البيانات الصحية فتُعامل بتضييق أشد بكثير.</strong> فالأرقام الدقيقة لا تغادر هاتفك أبدًا. ولا
+          تُرسل بيانات تباين معدل ضربات القلب ومعدل ضربات القلب أثناء الراحة والطاقة المبذولة إلى أي جهة. وما قد يرافق
+          طلب «الرؤية» هو نطاق تقريبي لا غير — مثل «النوم: قصير، النشاط: معتاد» — ويُستخدم فقط لضبط نبرة التأمل في أسبوع
+          غير اعتيادي. والنموذج مُوجَّه بألا يقتبسه أو يناقشه أو يقدم نصيحة بشأنه أبدًا.
+        </p>
+        <p class="pp-body">
+          هذه المزايا اختيارية، وعدم استخدامها يعني أنه لا يُرسل شيء.
+        </p>
+      </div>
+
+      <!-- 07 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">07</span>
+          <h2 class="pp-section-title">كيف نستخدم معلوماتك</h2>
+        </div>
+        <ul class="pp-list">
+          <li>لتنفيذ طلبك وتوصيل الدفتر ومعالجة الإرجاع والاسترداد</li>
+          <li>لإنشاء حسابك وتشغيله، وفتحه عند استخدامك للرقم التسلسلي</li>
+          <li>لتخزين تدويناتك وعرضها لك</li>
+          <li>لإنتاج «رؤية» أو تحويل صفحة ممسوحة إلى نص أو توليد جلسة تأمل عندما تطلب ذلك</li>
+          <li>لإرسال تأكيدات الطلب وتحديثات التوصيل وإشعارات الحساب</li>
+          <li>لإرسال رسائل تسويقية بالبريد الإلكتروني فقط إذا وافقت على ذلك، مع رابط لإلغاء الاشتراك في كل رسالة</li>
+          <li>للرد على أسئلتك وطلبات الدعم</li>
+          <li>للحفاظ على أمان الخدمات والتحقيق في الاحتيال أو إساءة الاستخدام</li>
+          <li>للوفاء بالتزاماتنا القانونية والضريبية والمحاسبية في مصر</li>
+        </ul>
+      </div>
+
+      <!-- 08 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">08</span>
+          <h2 class="pp-section-title">الأساس القانوني</h2>
+        </div>
+        <div class="pp-def">
+          <div class="pp-def-item">
+            <span class="pp-def-term">تنفيذ عقد</span>
+            <span class="pp-def-desc">توصيل الدفتر وتشغيل حسابك وتقديم المزايا التي تطلبها</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الموافقة الصريحة</span>
+            <span class="pp-def-desc">تدويناتك وحالاتك المزاجية وبياناتك الصحية. يعتبر القانون المصري البيانات التي تكشف الحالة النفسية أو الصحية بيانات شخصية حساسة، لذا لا نعالجها إلا بناءً على الموافقة الصريحة التي تمنحها عند إنشاء حسابك، ولا نعالج البيانات الصحية إلا بعد أن تمنح أيضًا إذن الوصول على هاتفك</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الموافقة</span>
+            <span class="pp-def-desc">رسائل التسويق بالبريد الإلكتروني ومزايا الذكاء الاصطناعي الاختيارية، ويمكن سحبها في أي وقت دون فقدان أي شيء آخر</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">المصلحة المشروعة</span>
+            <span class="pp-def-desc">الحفاظ على أمان الخدمات ومنع الاحتيال وفهم الاستخدام الإجمالي</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الالتزام القانوني</span>
+            <span class="pp-def-desc">الاحتفاظ بالسجلات التجارية والضريبية كما يقتضي القانون المصري</span>
+          </div>
+        </div>
+        <p class="pp-body" style="margin-top: 1.5rem;">
+          وإذا كانت اللائحة العامة لحماية البيانات الأوروبية (GDPR) تسري عليك أيضًا، فهذه هي الأسس التي نعتمد عليها
+          بموجب المادة ٦ منها، ولا نعالج البيانات الصحية إلا بموافقتك الصريحة.
+        </p>
+      </div>
+
+      <!-- 09 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">09</span>
+          <h2 class="pp-section-title">من يطّلع على بياناتك أيضًا</h2>
+        </div>
+        <p class="pp-body" style="margin-bottom: 1.5rem;">
+          نحن لا نبيع بياناتك. وهؤلاء هم المعالجون الذين نعتمد عليهم في التشغيل، وما يتلقاه كل منهم بالتحديد:
+        </p>
+        <div class="pp-def">
+          <div class="pp-def-item">
+            <span class="pp-def-term">Supabase</span>
+            <span class="pp-def-desc">الحسابات وقاعدة البيانات وتخزين الملفات. تحتفظ بحسابك وملفك الشخصي وطلباتك وتدويناتك المشفرة.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">Vercel</span>
+            <span class="pp-def-desc">استضافة الموقع ووظائف الخادم لدينا. سجلات الطلبات المعتادة.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">XPay</span>
+            <span class="pp-def-desc">الدفع. تتلقى اسمك وبريدك الإلكتروني وهاتفك وعنوان التوصيل والمبلغ، وتتعامل مع بيانات البطاقة التي لا نراها.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">OpenAI</span>
+            <span class="pp-def-desc">الرؤى والمسح الضوئي ونصوص التأمل. تتلقى نص التدوينات أو صور الصفحات الممسوحة أو النطاقات الصحية التقريبية — فقط عند استخدامك لتلك المزايا. راجع البند ٠٦.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">ElevenLabs</span>
+            <span class="pp-def-desc">تنطق نص جلسة التأمل. تتلقى النص المولَّد، لا تدويناتك.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">Resend</span>
+            <span class="pp-def-desc">البريد الإلكتروني التشغيلي وبريد التواصل. تتلقى عنوان بريدك الإلكتروني والرسالة.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">Apple وGoogle</span>
+            <span class="pp-def-desc">إذا سجّلت الدخول عبرهما، فإنهما تؤكدان هويتك وتشاركان عنوان بريدك الإلكتروني. وفيما عدا ذلك تقتصران على توزيع التطبيق.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">شركات الشحن</span>
+            <span class="pp-def-desc">اسمك وهاتفك وعنوان التوصيل، لإيصال الطرد إليك.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الجهات القانونية</span>
+            <span class="pp-def-desc">فقط حين يقتضي ذلك أمر قانوني صحيح، أو لحماية سلامة شخص ما.</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">مشترٍ مستقبلي</span>
+            <span class="pp-def-desc">إذا بيع النشاط أو اندمج، مع إخطارك مسبقًا، ودون تغيير هذه السياسة إلا بذلك.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">10</span>
+          <h2 class="pp-section-title">نقل البيانات خارج مصر</h2>
+        </div>
+        <p class="pp-body">
+          يعمل مزوّدونا خارج مصر، لذا تُعالج بياناتك في الخارج — في الاتحاد الأوروبي والولايات المتحدة أساسًا.
+          <strong>نخبرك بذلك قبل إنشاء حسابك، وننقل بياناتك إلى الخارج بناءً على الموافقة الصريحة التي تمنحها في تلك
+          اللحظة</strong>، بغرض تقديم الخدمات لك. ولا يعالج أي من المزوّدين المذكورين في البند ٠٩ بياناتك إلا وفقًا
+          لتعليماتنا وفي إطار التزاماته الخاصة بحماية البيانات. وإذا لم توافق، لا يمكننا تقديم التطبيق لأنه لا يعمل دون
+          هؤلاء المزوّدين؛ أما الموقع وطلب الدفتر فلا يتطلبان حسابًا.
+        </p>
+      </div>
+
+      <!-- 11 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">11</span>
+          <h2 class="pp-section-title">ملفات تعريف الارتباط والتقنيات المشابهة</h2>
+        </div>
+        <p class="pp-body">
+          <strong>الموقع لا يضع أي ملفات تعريف ارتباط.</strong> فلا توجد ملفات تحليل ولا ملفات إعلانية ولا شريط موافقة،
+          لأنه لا يوجد ما يستدعي الموافقة.
+        </p>
+        <p class="pp-body">
+          يحفظ التطبيق رمز تسجيل الدخول وتفضيلاتك المحلية على جهازك حتى لا يُسجَّل خروجك بين الزيارات. وهذا ضروري حصرًا
+          لإبقائك مسجلًا، ويُزال بمسح بيانات التطبيق أو تسجيل الخروج.
+        </p>
+      </div>
+
+      <!-- 12 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">12</span>
+          <h2 class="pp-section-title">مدة الاحتفاظ</h2>
+        </div>
+        <ul class="pp-list">
+          <li><strong>تدويناتك وملفك الشخصي:</strong> طوال مدة وجود حسابك، وحذف الحساب يحذفها.</li>
+          <li><strong>سجلات الطلبات والمدفوعات:</strong> ٥ سنوات من تاريخ المعاملة، للوفاء بمتطلبات حفظ السجلات التجارية والضريبية في مصر. وتبقى بعد حذف الحساب لأن القانون يقتضي ذلك.</li>
+          <li><strong>رسائل الدعم:</strong> سنتان من آخر رسالة في المحادثة.</li>
+          <li><strong>تفضيلات التسويق:</strong> تُحفظ دون حد زمني، حتى يظل إلغاء اشتراكك محترمًا.</li>
+          <li><strong>سجلات الخادم والأمان:</strong> حتى ١٢ شهرًا.</li>
+          <li><strong>البيانات المرسلة إلى مزوّد الذكاء الاصطناعي:</strong> يحتفظ بها المزوّد وفقًا لسياسته لأغراض رصد إساءة الاستخدام ثم يحذفها، ولا نحتفظ بها نحن بعد عرض النتيجة لك.</li>
+        </ul>
+        <p class="pp-body" style="margin-top: 1.5rem;">
+          عند انتهاء كل مدة، نحذف البيانات أو نجعلها مجهولة الهوية على نحو لا رجعة فيه.
+        </p>
+      </div>
+
+      <!-- 13 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">13</span>
+          <h2 class="pp-section-title">حقوقك</h2>
+        </div>
+        <p class="pp-body" style="margin-bottom: 1.5rem;">
+          بموجب قانون حماية البيانات الشخصية المصري — واللائحة الأوروبية حيثما تسري عليك — يحق لك:
+        </p>
+        <div class="pp-def">
+          <div class="pp-def-item">
+            <span class="pp-def-term">المعرفة</span>
+            <span class="pp-def-desc">أن تُبلَّغ بما نحتفظ به عنك وسببه</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الاطلاع</span>
+            <span class="pp-def-desc">الحصول على نسخة من بياناتك الشخصية</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">التصحيح</span>
+            <span class="pp-def-desc">تصحيح البيانات غير الدقيقة أو غير المكتملة</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الحذف</span>
+            <span class="pp-def-desc">محو بياناتك، باستثناء السجلات التي يُلزمنا القانون بالاحتفاظ بها</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">النقل</span>
+            <span class="pp-def-desc">الحصول على تدويناتك بصيغة قابلة للقراءة آليًا</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الاعتراض</span>
+            <span class="pp-def-desc">الاعتراض على المعالجة القائمة على المصلحة المشروعة، وعلى التسويق المباشر في أي وقت</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">التقييد</span>
+            <span class="pp-def-desc">قصر المعالجة على غرض محدد</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الإخطار بالاختراق</span>
+            <span class="pp-def-desc">أن تُخطَر إذا تعرضت بياناتك الشخصية لاختراق</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">سحب الموافقة</span>
+            <span class="pp-def-desc">إيقاف الوصول إلى البيانات الصحية أو مزايا الذكاء الاصطناعي أو التسويق دون فقدان باقي التطبيق</span>
+          </div>
+          <div class="pp-def-item">
+            <span class="pp-def-term">الشكوى</span>
+            <span class="pp-def-desc">تقديم شكوى إلى مركز حماية البيانات الشخصية في مصر، أو إلى جهة حماية البيانات في بلدك</span>
+          </div>
+        </div>
+        <p class="pp-body" style="margin-top: 1.5rem;">
+          راسلنا على <a href="mailto:hello@whitemirrorlabs.com" class="pp-link ltr">hello@whitemirrorlabs.com</a>. نبتّ في كل طلب خلال ٦ أيام عمل، وإذا رفضنا أي جزء منه نبلغك بالسبب. وممارستك لحقوقك
+          مجانية، ولن نعاملك بشكل مختلف بسببها.
+        </p>
+      </div>
+
+      <!-- 14 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">14</span>
+          <h2 class="pp-section-title">حذف حسابك</h2>
+        </div>
+        <p class="pp-body">
+          يمكنك حذف حسابك من داخل التطبيق دون الرجوع إلينا. والحذف يزيل تدويناتك وملفك الشخصي وروابطك الاجتماعية، ولا
+          يزيل سجلات الطلبات التي يلزمنا القانون بالاحتفاظ بها، ولا يعيد الرقم التسلسلي صالحًا — فالرقم التسلسلي يُستخدم
+          مرة واحدة ولا يمكن استخدامه مجددًا على حساب جديد.
+        </p>
+      </div>
+
+      <!-- 15 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">15</span>
+          <h2 class="pp-section-title">خصوصية الأطفال</h2>
+        </div>
+        <p class="pp-body">
+          الخدمات مخصصة لمن بلغوا ١٦ عامًا فأكثر، ولا نجمع عن علم بيانات أي شخص أصغر سنًا. وإذا اعتقدت أن طفلًا قدّم إلينا
+          بياناته، راسلنا على <a href="mailto:hello@whitemirrorlabs.com" class="pp-link ltr">hello@whitemirrorlabs.com</a> وسنحذفها فورًا.
+        </p>
+      </div>
+
+      <!-- 16 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">16</span>
+          <h2 class="pp-section-title">الأمان</h2>
+        </div>
+        <p class="pp-body">
+          تُشفَّر تدويناتك أثناء التخزين كما هو مبين في البند ٠٥، وتُشفَّر البيانات أثناء النقل باستخدام TLS. والوصول إلى
+          بيانات التشغيل مقيّد، وقواعد الوصول إلى قاعدة البيانات مطبقة على مستوى كل حساب بحيث لا يصل أي شخص إلى سجلات غيره.
+          ولا تمر بيانات بطاقات الدفع بأنظمتنا أبدًا.
+        </p>
+        <p class="pp-body">
+          لا يوجد نظام آمن تمامًا. وإذا تعرضت بياناتك الشخصية لاختراق، نخطر مركز حماية البيانات الشخصية خلال ٧٢ ساعة
+          ونخطرك خلال ٣ أيام عمل، كما يقتضي القانون المصري. وإذا اشتبهت في دخول أحد إلى حسابك، تواصل معنا فورًا.
+        </p>
+      </div>
+
+      <!-- 17 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">17</span>
+          <h2 class="pp-section-title">تعديل هذه السياسة</h2>
+        </div>
+        <p class="pp-body">
+          سنحدّث تاريخ «آخر تحديث» أعلاه كلما تغيرت هذه السياسة. وفي حالة التغيير الجوهري — وبخاصة إضافة معالج جديد
+          يتلقى تدويناتك، أو استخدام جديد لبياناتك — سنراسل أصحاب الحسابات قبل سريانه، وحين يعتمد التغيير على الموافقة
+          سنطلبها ولن نفترضها.
+        </p>
+        <p class="pp-body">
+          تُنشر هذه السياسة باللغتين العربية والإنجليزية. <strong>وعند وجود أي اختلاف بين النصين، يسري النص العربي.</strong>
+        </p>
+      </div>
+
+      <!-- 18 -->
+      <div class="pp-section">
+        <div class="pp-section-head">
+          <span class="pp-num">18</span>
+          <h2 class="pp-section-title">تواصل معنا</h2>
+        </div>
+        <p class="pp-body">
+          أي سؤال عن بياناتك، أو أي طلب لممارسة حق من حقوقك، يصل إلى عنوان واحد.
+        </p>
+        <div class="pp-contact-block">
+          <p class="pp-body">
+            <strong>وايت ميرور لابز</strong><br />
+            ١٢٨ حدائق دجلة، حدائق أكتوبر<br />
+            الجيزة، مصر
+          </p>
+          <p class="pp-body" style="margin-top: 0.75rem;">
+            <strong>البريد الإلكتروني:</strong>&nbsp;
+            <a href="mailto:hello@whitemirrorlabs.com" class="ltr">hello@whitemirrorlabs.com</a>
+          </p>
+          <p class="pp-body" style="margin-top: 0.5rem;">
+            نبتّ في طلبات الخصوصية خلال ٦ أيام عمل.
+          </p>
+        </div>
+      </div>
+
+      <!-- خاتمة -->
+      <p class="pp-closing">
+        كُتبت سياسة الخصوصية هذه لتُقرأ — لا لمجرد الامتثال.<br />
+        إن كان أي جزء منها غير واضح، تواصل معنا. ثقتك هي الأساس الذي نبني عليه كل شيء.
+      </p>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">WHITE MIRROR</span>
+        <p class="footer-tagline">نظام تدوين موجَّه لمن قرروا التوقف<br />عن الهروب من أنفسهم.</p>
+        <p class="footer-tagline">وايت ميرور &mdash; الدفتر منتج من منتجات وايت ميرور لابز.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <span class="footer-col-label">الممارسة</span>
+          <a href="index.html#method"   class="footer-link">منهج M.I.R.R.O.R.</a>
+          <a href="index.html#phases"   class="footer-link">التسعون يومًا</a>
+          <a href="index.html#journal"  class="footer-link">الدفتر</a>
+          <a href="index.html#contact"  class="footer-link">تواصل معنا</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">التطبيق</span>
+          <a href="https://app.whitemirrorlabs.com" class="footer-link" target="_blank" rel="noopener">افتح التطبيق</a>
+          <a href="https://app.whitemirrorlabs.com/signup" class="footer-link" target="_blank" rel="noopener">إنشاء حساب</a>
+          <a href="https://app.whitemirrorlabs.com/login" class="footer-link" target="_blank" rel="noopener">تسجيل الدخول</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© ٢٠٢٦ وايت ميرور لابز. جميع الحقوق محفوظة.</span>
+      <div class="footer-bottom-links">
+        <a href="privacy-ar.html" class="footer-legal-link">الخصوصية</a>
+        <a href="terms-ar.html"   class="footer-legal-link">الشروط</a>
+        <a href="refund-ar.html"  class="footer-legal-link">الاسترداد</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+
+</body>
+
+</html>

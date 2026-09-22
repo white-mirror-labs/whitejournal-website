@@ -1636,3 +1636,15 @@ body {
   .app-phone-wrap { height: 537px; }
   .app-phone { transform: scale(0.85); transform-origin: top center; }
 }
+
+/* Pre-purchase terms disclosure under the pay button (Consumer Protection Law 181/2018 art. 37). */
+.shop-legal-note {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.shop-legal-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
