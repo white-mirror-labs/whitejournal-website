@@ -82,11 +82,5 @@
       "destination": "https://www.whitemirrorlabs.com/$1",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/ar",
-      "destination": "/index-ar.html"
-    }
   ]
 }
