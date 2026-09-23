@@ -8,7 +8,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://code.tidio.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.vercel.app https://api.resend.com; frame-src https://*.xpay.app;"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://*.vercel.app https://api.resend.com; frame-src https://*.xpay.app;"
         },
         {
           "key": "X-Frame-Options",
@@ -54,9 +54,23 @@
           "value": "noindex"
         }
       ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ],
   "redirects": [
+    {
+      "source": "/index-ar",
+      "destination": "/ar",
+      "permanent": true
+    },
     {
       "source": "/(.*)",
       "has": [
@@ -67,6 +81,12 @@
       ],
       "destination": "https://www.whitemirrorlabs.com/$1",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/ar",
+      "destination": "/index-ar.html"
     }
   ]
 }

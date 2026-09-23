@@ -3,11 +3,21 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.whitemirrorlabs.com/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/ar</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/" />
   </url>
   <url>
     <loc>https://www.whitemirrorlabs.com/shop</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://www.whitemirrorlabs.com/terms</loc>
