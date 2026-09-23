@@ -29,6 +29,10 @@ module.exports = async function handler(req, res) {
 
   const { name, email, phone, address, city, governorate } = req.body || {};
 
+  // Which confirmation page XPay returns the buyer to. Someone who ordered in
+  // Arabic should not land on an English receipt; anything but 'ar' is English.
+  const lang = req.body?.lang === 'ar' ? 'ar' : 'en';
+
   if (!name || !email || !phone || !address || !city || !governorate) {
     return res.status(400).json({ error: 'All fields are required' });
   }
@@ -94,7 +98,7 @@ module.exports = async function handler(req, res) {
         },
         afterCompletion: {
           type: 'redirect',
-          redirect: { url: `${SITE_BASE}/shop-success` },
+          redirect: { url: `${SITE_BASE}/shop-success${lang === 'ar' ? '-ar' : ''}` },
         },
       }),
     });

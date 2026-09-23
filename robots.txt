@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /shop-success
+Disallow: /shop-success-ar
 
 Sitemap: https://www.whitemirrorlabs.com/sitemap.xml
