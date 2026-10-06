@@ -1281,41 +1281,19 @@ body {
   height: auto;
 }
 
-.journal-film {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
-
-.journal-film[data-ready="1"] { opacity: 1; pointer-events: auto; }
 
 /* ── Journal animation keyframes ── */
 @keyframes jm-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
 @keyframes jm-ripple  { 0% { transform: scale(0.25); opacity: 0.5; } 70% { opacity: 0; } 100% { transform: scale(1.7); opacity: 0; } }
 @keyframes jm-shine   { 0% { transform: translateX(-46px); } 50% { transform: translateX(46px); } 100% { transform: translateX(-46px); } }
-@keyframes jm-draw    { 0% { stroke-dashoffset: 250; } 55%, 100% { stroke-dashoffset: 0; } }
-@keyframes jm-dot     { 0% { fill: #ffffff; stroke: var(--border-mid); } 9% { fill: var(--ink); stroke: var(--ink); } 90% { fill: var(--ink); stroke: var(--ink); } 100% { fill: #ffffff; stroke: var(--border-mid); } }
 
 .jm-breathe { transform-box: fill-box; transform-origin: center; animation: jm-breathe 5s ease-in-out infinite; }
 .jm-ripple  { transform-box: fill-box; transform-origin: center; animation: jm-ripple 3.6s ease-out infinite; }
 .jm-shine   { animation: jm-shine 4.2s ease-in-out infinite; }
-.jm-draw    { stroke-dasharray: 250; animation: jm-draw 6s ease-in-out infinite; }
-.jm-dot     { animation: jm-dot 6s ease-in-out infinite; }
-.jm-d2 { animation-delay: 0.6s; }
-.jm-d3 { animation-delay: 1.2s; }
-.jm-d4 { animation-delay: 1.8s; }
-.jm-d5 { animation-delay: 2.4s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .jm-breathe, .jm-ripple, .jm-shine, .jm-draw, .jm-dot { animation: none !important; }
+  .jm-breathe, .jm-ripple, .jm-shine { animation: none !important; }
   .jm-ripple { opacity: 0 !important; }
-  .jm-dot  { fill: var(--ink) !important; stroke: var(--ink) !important; }
-  .jm-draw { stroke-dashoffset: 0 !important; }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1744,3 +1722,279 @@ body {
 /* Arabic runs longer than English at the same size; give it a little more room. */
 [dir="rtl"] .hero-sub,
 [dir="rtl"] .section-sub { line-height: 1.85; }
+
+/* ═══════════════════════════════════════════════════════
+   WHITE MIRROR LABS — company layer
+   Hero scale-up, ecosystem, The Mind chapter, philosophy, vision.
+   One design system: same tokens, same type, restrained contrast between lines.
+   ═══════════════════════════════════════════════════════ */
+section[id], .mind[id] { scroll-margin-top: calc(var(--nav-height) + 8px); }
+#journal, #features, #method, #phases { scroll-margin-top: calc(var(--nav-height) + 52px); }
+
+.nav-logo-sub { font-weight: 400; color: var(--tertiary); }
+
+/* ── Hero ── */
+.hero { padding-top: calc(var(--nav-height) + 9rem); padding-bottom: 9rem; }
+.hero-kicker { letter-spacing: 0.22em; font-size: 12px; margin-bottom: 1.5rem; }
+.hero-headline { font-size: clamp(2.6rem, 7vw, 5.2rem); max-width: 900px; line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1.75rem; }
+.hero-sub { max-width: 540px; font-size: clamp(1rem, 1.5vw, 1.15rem); }
+.hero-notice { max-width: 460px; }
+
+/* ── Ecosystem ── */
+.eco-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+.eco-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-warm);
+  color: var(--ink);
+  text-decoration: none;
+  min-height: 420px;
+}
+.eco-glyph { width: 40px; height: 40px; margin-bottom: 2.5rem; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; }
+.eco-line { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tertiary); margin-bottom: 0.9rem; }
+.eco-head { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; line-height: 1.25; letter-spacing: -0.015em; }
+.eco-desc { margin-top: 0.75rem; font-size: 15px; color: var(--secondary); line-height: 1.6; }
+.eco-product { margin-top: auto; padding-top: 1.75rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.eco-product-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--quaternary); }
+.eco-product-name { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.015em; }
+.eco-product-desc { font-size: 14px; color: var(--secondary); line-height: 1.55; }
+.eco-cta { margin-top: 1.5rem; font-size: 15px; font-weight: 500; }
+.eco-cta::after { content: ' ›'; transition: margin-left 0.2s var(--ease-out); }
+
+/* The Mind is the primary destination: the one dark, linked card. */
+.eco-mind { background: var(--ink); border-color: var(--ink); color: var(--bg); transition: transform 0.4s var(--ease-out); }
+.eco-mind:hover { transform: translateY(-4px); }
+.eco-mind:hover .eco-cta::after { margin-left: 4px; }
+.eco-mind:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.eco-mind .eco-line, .eco-mind .eco-product-label { color: var(--on-dark-muted); }
+.eco-mind .eco-desc, .eco-mind .eco-product-desc { color: var(--on-dark-muted); }
+.eco-mind .eco-head { font-size: 1.9rem; }
+
+.eco-body { background: var(--surface); }
+.eco-body .eco-glyph, .eco-body .eco-head { opacity: 0.72; }
+.eco-badge {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border-mid);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+/* ── The Mind chapter ── */
+.mind-hero {
+  background: var(--ink);
+  color: var(--bg);
+  text-align: center;
+  padding: 7rem 0 6rem;
+}
+.mind-hero-label { font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--on-dark-muted); margin-bottom: 1.25rem; }
+.mind-hero-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.04; letter-spacing: -0.03em; }
+.mind-hero-sub { margin: 1.5rem auto 0; max-width: 460px; font-size: 1.05rem; line-height: 1.6; color: var(--on-dark-muted); }
+
+/* Sticky inside .mind only, so it releases when the chapter ends. */
+.mind-subnav {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 40;
+  background: rgba(255,255,255,0.86);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.mind-subnav-inner { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.mind-subnav-title { font-family: var(--font-display); font-size: 1rem; letter-spacing: -0.01em; white-space: nowrap; }
+.mind-subnav-links { display: flex; gap: 1.5rem; }
+.mind-subnav-links a { font-size: 13px; color: var(--secondary); text-decoration: none; padding: 0.9rem 0; border-bottom: 2px solid transparent; transition: color 0.15s ease; }
+.mind-subnav-links a:hover, .mind-subnav-links a.is-active { color: var(--ink); }
+.mind-subnav-links a.is-active { border-bottom-color: var(--ink); }
+.mind-subnav-cta { font-size: 12px; color: var(--bg); background: var(--ink); text-decoration: none; padding: 0.35rem 0.9rem; border-radius: 100px; white-space: nowrap; }
+
+/* Physical + app pairing */
+.duo { display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; margin-top: 4rem; }
+.duo-card { padding: 2rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); }
+.duo-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--quaternary); margin-bottom: 0.6rem; }
+.duo-title { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.6rem; line-height: 1.25; }
+.duo-desc { font-size: 14px; color: var(--secondary); line-height: 1.6; }
+.duo-link { display: flex; align-items: center; width: 3rem; }
+.duo-link span { display: block; width: 100%; height: 1px; background: var(--border-mid); }
+.duo-note { margin-top: 1.5rem; text-align: center; font-size: 13px; color: var(--tertiary); }
+.duo-note a { color: var(--ink); }
+
+/* ── Philosophy ── */
+.philosophy { background: var(--bg-warm); text-align: center; }
+.philosophy-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1.04; letter-spacing: -0.03em; margin: 0.5rem 0 3rem; }
+.philosophy-title em { font-style: italic; }
+.philosophy-body { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; font-size: 1.05rem; line-height: 1.7; color: var(--secondary); }
+.philosophy-lead { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.4; color: var(--ink); letter-spacing: -0.01em; }
+.philosophy-close { font-family: var(--font-display); font-style: italic; color: var(--ink); font-size: 1.2rem; margin-top: 1rem; }
+.beliefs { list-style: none; max-width: 760px; margin: 4rem auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+.beliefs li { font-size: 14px; line-height: 1.6; color: var(--secondary); }
+
+/* ── Bigger vision ── */
+.vision-row { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 4rem; border-top: 1px solid var(--border-mid); }
+.vision-item { padding: 2rem 1.5rem 0 0; position: relative; }
+.vision-item::before { content: ''; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+.vision-line { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tertiary); margin-bottom: 0.6rem; }
+.vision-text { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.3; letter-spacing: -0.015em; margin-bottom: 0.9rem; }
+.vision-link, .vision-status { font-size: 14px; color: var(--secondary); }
+.vision-link { color: var(--ink); }
+.vision-link::after { content: ' ›'; }
+
+/* ── Method as a sequence ── */
+.mirror-grid { list-style: none; }
+.mirror-desc { min-height: 3.2em; }
+
+/* ── FAQ ── */
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.feature-card { background: var(--bg); padding: 2rem; }
+
+/* ── Footer ── */
+.footer-inner { grid-template-columns: 1fr 2fr; }
+.footer-links { grid-template-columns: repeat(3, 1fr); }
+.footer-link--muted { color: var(--tertiary); }
+
+/* Keyboard focus, everywhere on the new surface. */
+.mind-subnav a:focus-visible, .footer-link:focus-visible, .btn-primary:focus-visible, .btn-ghost:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+.cta-band .btn-primary:focus-visible { outline-color: var(--bg); }
+
+@media (max-width: 1024px) {
+  .eco-grid { grid-template-columns: 1fr 1fr; }
+  .eco-mind { grid-column: 1 / -1; min-height: 360px; }
+  .eco-card { min-height: 320px; }
+}
+@media (max-width: 768px) {
+  .hero { padding-top: calc(var(--nav-height) + 5rem); padding-bottom: 5rem; }
+  .eco-grid { grid-template-columns: 1fr; }
+  .eco-card, .eco-mind { min-height: 0; padding: 1.75rem 1.5rem; }
+  .eco-glyph { margin-bottom: 1.5rem; }
+  .mind-hero { padding: 5rem 0 4rem; }
+  .mind-subnav-title, .mind-subnav-cta { display: none; }
+  .mind-subnav-links { width: 100%; justify-content: space-between; gap: 0.5rem; }
+  .duo { grid-template-columns: 1fr; margin-top: 3rem; }
+  .duo-link { width: 1px; height: 1.5rem; margin: 0 auto; }
+  .duo-link span { width: 1px; height: 100%; }
+  .beliefs, .vision-row { grid-template-columns: 1fr; }
+  .beliefs { gap: 1.25rem; text-align: center; }
+  .vision-row { border-top: 0; margin-top: 2.5rem; }
+  .vision-item { padding: 1.5rem 0; border-top: 1px solid var(--border-mid); }
+  .vision-item::before { top: -4px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .footer-links { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .footer-links { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eco-mind, .eco-cta::after { transition: none; }
+  .eco-mind:hover { transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Pass 2 — hierarchy: Labs → business line → product
+   ═══════════════════════════════════════════════════════ */
+.eco-root { display: flex; flex-direction: column; align-items: center; margin-bottom: 0.75rem; }
+.eco-root-name { font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); }
+.eco-root::after { content: ''; width: 1px; height: 36px; margin-top: 0.9rem; background: var(--border-mid); }
+
+.mind-hero-product { margin: 3rem auto 0; padding-top: 2rem; max-width: 360px; border-top: 1px solid rgba(255,255,255,0.18); display: flex; flex-direction: column; gap: 0.35rem; }
+.mind-hero-product-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--on-dark-muted); }
+.mind-hero-product-name { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: -0.015em; }
+.mind-hero-product-desc { font-size: 14px; color: var(--on-dark-muted); }
+.mind-subnav-sep { color: var(--quaternary); margin: 0 0.15rem; }
+
+.journal-kicker--why { margin-top: 1.75rem; }
+.journal-copy .journal-desc { margin-bottom: 0; }
+.journal-copy .journal-actions { margin-top: 2rem; }
+
+/* Physical + app: open columns, not boxed cards */
+.duo-card { border: 0; background: transparent; padding: 0 1rem; }
+.duo-figure { height: 220px; margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: center; background: var(--surface); border-radius: var(--radius-md); overflow: hidden; }
+.duo-figure:not(.duo-figure--app) { background: #fff; border: 1px solid var(--border); }
+.duo-figure img { height: 100%; width: auto; }
+.duo-figure--app { gap: 0.4rem; padding: 0 1rem; }
+.duo-figure--app span { font-size: 12px; font-weight: 500; color: var(--secondary); padding: 0.45rem 0.8rem; border: 1px solid var(--border-mid); border-radius: 100px; background: var(--bg); }
+.duo-link { width: 2rem; }
+
+.together { margin-top: 4.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+.together-label { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tertiary); text-align: center; margin-bottom: 2rem; }
+.together-steps { list-style: none; counter-reset: t; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.together-steps li { counter-increment: t; font-size: 14px; line-height: 1.55; color: var(--secondary); }
+.together-steps li::before { content: counter(t, decimal-leading-zero); display: block; font-family: var(--font-display); font-size: 1.4rem; color: var(--border-mid); margin-bottom: 0.5rem; }
+.together-steps strong { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 768px) {
+  .duo-card { padding: 0; }
+  .duo-figure { height: 200px; }
+  .duo-figure--app { flex-wrap: wrap; height: auto; min-height: 120px; padding: 1.5rem 1rem; }
+  .together { margin-top: 3rem; }
+  .together-steps { grid-template-columns: 1fr 1fr; }
+  .mind-hero-product { margin-top: 2.25rem; }
+}
+@media (max-width: 480px) { .together-steps { grid-template-columns: 1fr; } }
+
+/* Nav fits the longer link set and brand name without wrapping. */
+.nav-logo, .nav-link, .nav-cta { white-space: nowrap; }
+@media (max-width: 1180px) {
+  .nav-cta-long { display: none; }
+  .nav-links .nav-link[href="#contact"] { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Pass 3 — product imagery, statuses, RTL for the company layer
+   ═══════════════════════════════════════════════════════ */
+.journal-visual { background: #fff; }
+.journal-photo { display: block; width: 100%; height: auto; }
+
+.duo-figure--paper { background: var(--surface); border: 0; }
+.duo-figure--paper .journal-anim { height: 100%; width: auto; }
+
+.eco-community .eco-badge { margin-top: 1.25rem; }
+.vision-item:not(.is-live)::before { background: var(--bg); border: 1px solid var(--border-mid); }
+.vision-item:not(.is-live) .vision-text { color: var(--secondary); }
+
+/* RTL: mirror the few direction-dependent rules of the company layer. */
+[dir="rtl"] .eco-head,
+[dir="rtl"] .mind-hero-title,
+[dir="rtl"] .mind-hero-product-name,
+[dir="rtl"] .philosophy-title,
+[dir="rtl"] .philosophy-lead,
+[dir="rtl"] .philosophy-close,
+[dir="rtl"] .vision-text,
+[dir="rtl"] .mind-subnav-title { font-family: 'Noto Naskh Arabic', var(--font-lora), serif; letter-spacing: 0; }
+[dir="rtl"] .philosophy-title em,
+[dir="rtl"] .philosophy-close { font-style: normal; }
+[dir="rtl"] .eco-desc, [dir="rtl"] .eco-product-desc, [dir="rtl"] .duo-desc, [dir="rtl"] .duo-title,
+[dir="rtl"] .together-steps li, [dir="rtl"] .philosophy-body, [dir="rtl"] .beliefs li,
+[dir="rtl"] .mirror-desc, [dir="rtl"] .phase-desc, [dir="rtl"] .hero-notice, [dir="rtl"] .footer-tagline,
+[dir="rtl"] .footer-link, [dir="rtl"] .btn-primary, [dir="rtl"] .btn-ghost, [dir="rtl"] .mind-hero-sub,
+[dir="rtl"] .eco-cta, [dir="rtl"] .vision-link, [dir="rtl"] .vision-status, [dir="rtl"] .duo-note,
+[dir="rtl"] .journal-note, [dir="rtl"] .mind-subnav-links a, [dir="rtl"] .eco-badge { font-family: 'IBM Plex Sans Arabic', var(--font-body), sans-serif; }
+[dir="rtl"] .eco-line, [dir="rtl"] .mind-hero-label, [dir="rtl"] .eco-root-name, [dir="rtl"] .duo-label,
+[dir="rtl"] .together-label, [dir="rtl"] .vision-line, [dir="rtl"] .eco-product-label,
+[dir="rtl"] .mind-hero-product-label, [dir="rtl"] .journal-kicker, [dir="rtl"] .eco-badge { letter-spacing: 0.04em; }
+[dir="rtl"] .btn-ghost::after, [dir="rtl"] .eco-cta::after, [dir="rtl"] .vision-link::after { content: ' ‹'; }
+[dir="rtl"] .vision-item { padding: 2rem 0 0 1.5rem; }
+[dir="rtl"] .vision-item::before { left: auto; right: 0; }
+[dir="rtl"] .journal-meta li::before { content: '—'; }
+@media (max-width: 768px) { [dir="rtl"] .vision-item { padding: 1.5rem 0; } }
+.duo-figure.duo-figure--paper { background: var(--surface); border: 0; }
+/* An odd number of FAQ cards: let the last one span, so no empty cell shows. */
+.features-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (max-width: 768px) { .features-grid > :last-child:nth-child(odd) { grid-column: auto; } }
+@media (max-width: 768px) { .eco-card .eco-badge { margin-top: 1.5rem; } }

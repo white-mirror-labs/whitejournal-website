@@ -1,6 +1,6 @@
 # Higgsfield Shot Briefs — White Mirror
 
-Optional cinematic layer for the marketing site. The homepage already ships a code-authored SVG animation (`.journal-anim`) that carries every section with zero dependencies. These briefs are for photoreal clips you render in Higgsfield (or Runway / Kling / Sora) and drop into the ready `<video class="journal-film">` slot.
+Optional cinematic layer for the marketing site. The homepage already ships a code-authored SVG animation (`.journal-anim`) that carries every section with zero dependencies. These briefs are for photoreal clips you render in Higgsfield (or Runway / Kling / Sora) and drop into the page. (The empty `<video class="journal-film">` placeholder was removed in the October 2026 company redesign; the product photo now leads the journal section. Re-add a `<video>` element there when a clip is ready.)
 
 ## Brand constraints (apply to every shot)
 

@@ -11,7 +11,7 @@
   function paintScroll() {
     ticking = false;
     var y = window.scrollY;
-    nav.classList.toggle('scrolled', y > 20);
+    if (nav) nav.classList.toggle('scrolled', y > 20);
 
     if (progress) {
       var max = document.documentElement.scrollHeight - window.innerHeight;
@@ -34,20 +34,22 @@
   var hamburger   = document.getElementById('hamburger');
   var mobileMenu  = document.getElementById('mobile-menu');
 
-  hamburger.addEventListener('click', function () {
-    var open = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', open);
-  });
-
-  /* Close mobile menu on link click */
-  mobileMenu.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
     });
-  });
+
+    /* Close mobile menu on link click */
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
+  }
 
   /* ── Reveal on scroll ──
      Injected from JS so that with JS off, or with reduced motion on, nothing is
@@ -66,7 +68,12 @@
        within a group follows document order. */
     var GROUPS = [
       ['.hero-kicker, .hero-headline .hero-line, .hero-sub, .hero-actions, .hero-notice', 120, '16px'],
+      ['.eco-card', 120, '24px'],
+      ['.mind-hero-label, .mind-hero-title, .mind-hero-sub', 120, '20px'],
       ['.journal-copy, .journal-visual', 150, '24px'],
+      ['.duo-card', 150, '24px'],
+      ['.philosophy-title, .philosophy-body, .beliefs', 140, '24px'],
+      ['.vision-item', 120, '24px'],
       ['.app-blurb', 90, '24px'],
       ['.app-phone-wrap', 0, '24px'],
       ['.mirror-item', 100, '26px'],
@@ -95,4 +102,74 @@
       io.observe(el);
     });
   }
+
+  /* ── The Mind sub-nav: mark the section in view ──
+     Pure enhancement. Without IntersectionObserver the links still jump to the
+     right place; they just never highlight. */
+  var subLinks = document.querySelectorAll('.mind-subnav-links a');
+  if (subLinks.length && 'IntersectionObserver' in window) {
+    var byId = {};
+    subLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        subLinks.forEach(function (a) {
+          a.classList.remove('is-active');
+          a.removeAttribute('aria-current');
+        });
+        var link = byId[e.target.id];
+        if (link) {
+          link.classList.add('is-active');
+          link.setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) spy.observe(el);
+    });
+  }
+})();
+
+/* ── Waitlist ──
+   Shared by the English and Arabic homepages. Copy for the busy and error
+   states comes from data attributes so each page keeps its own language. */
+(function () {
+  'use strict';
+  var form = document.getElementById('waitlist-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('waitlist-submit');
+    var label = btn.textContent;
+    var errorMsg = form.dataset.error || 'Something went wrong. Please email us at hello@whitemirrorlabs.com';
+    btn.textContent = form.dataset.busy || 'Submitting…';
+    btn.disabled = true;
+
+    var body = {
+      name:  document.getElementById('wl-name').value.trim(),
+      email: document.getElementById('wl-email').value.trim(),
+      phone: document.getElementById('wl-phone').value.trim()
+    };
+
+    try {
+      var res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) {
+        form.classList.add('hidden');
+        document.getElementById('waitlist-success').classList.remove('hidden');
+        return;
+      }
+    } catch (err) { /* fall through to the error state */ }
+
+    btn.textContent = label;
+    btn.disabled = false;
+    alert(errorMsg);
+  });
 })();

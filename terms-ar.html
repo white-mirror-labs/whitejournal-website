@@ -14,19 +14,19 @@
   <link rel="manifest" href="/manifest.json" />
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="White Mirror" />
+  <meta property="og:site_name" content="White Mirror Labs" />
   <meta property="og:locale" content="ar_EG" />
   <meta property="og:url" content="https://www.whitemirrorlabs.com/terms-ar" />
   <meta property="og:title" content="الشروط والأحكام — وايت ميرور لابز" />
   <meta property="og:description" content="الشروط والأحكام الخاصة بوايت ميرور لابز: الموقع والتطبيق والفترة التجريبية المجانية لمدة ١٤ يومًا والدفتر المطبوع. تخضع للقانون المصري." />
-  <meta property="og:image" content="https://www.whitemirrorlabs.com/assets/og-image.jpg" />
+  <meta property="og:image" content="https://www.whitemirrorlabs.com/assets/og-labs.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="White Mirror — The Journal, a guided 90-day journal" />
+  <meta property="og:image:alt" content="White Mirror Labs: technology for a more human life. White Mirror Journal, a white hardcover journal." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="الشروط والأحكام — وايت ميرور لابز" />
   <meta name="twitter:description" content="الشروط والأحكام الخاصة بوايت ميرور لابز: الموقع والتطبيق والفترة التجريبية المجانية لمدة ١٤ يومًا والدفتر المطبوع. تخضع للقانون المصري." />
-  <meta name="twitter:image" content="https://www.whitemirrorlabs.com/assets/og-image.jpg" />
+  <meta name="twitter:image" content="https://www.whitemirrorlabs.com/assets/og-labs.jpg" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -282,29 +282,34 @@
   <!-- ═══════════════════════════════════════ NAV ═══════════════════════════════════════ -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo" id="nav-logo">WHITE MIRROR</a>
-      <div class="nav-links" id="nav-links">
-        <a href="index.html#journal"  class="nav-link">الدفتر</a>
-        <a href="index.html#features" class="nav-link">التطبيق</a>
-        <a href="index.html#method"   class="nav-link">المنهج</a>
-        <a href="index.html#phases"   class="nav-link">٩٠ يومًا</a>
-        <a href="index.html#contact"  class="nav-link">تواصل</a>
-        <a href="shop.html"           class="nav-link">المتجر</a>
+      <a href="/ar" class="nav-logo" lang="en">WHITE MIRROR <span class="nav-logo-sub">LABS</span></a>
+      <div class="nav-links">
+        <a href="/ar#ecosystem" class="nav-link">المنظومة</a>
+        <a href="/ar#the-mind" class="nav-link" lang="en">The Mind</a>
+        <a href="/ar#method" class="nav-link">المنهج</a>
+        <a href="/ar#philosophy" class="nav-link">الفلسفة</a>
+        <a href="/ar#faq" class="nav-link">أسئلة شائعة</a>
+        <a href="/ar#contact" class="nav-link">تواصل</a>
+        <a href="shop-ar.html" class="nav-link">المتجر</a>
+        <a href="terms.html" class="nav-link" lang="en" hreflang="en">English</a>
       </div>
-      <a href="shop.html" class="nav-cta" id="nav-cta">اطلب مسبقًا</a>
+      <a href="shop-ar.html" class="nav-cta">اطلب مسبقًا<span class="nav-cta-long"> الدفتر</span></a>
       <button class="nav-hamburger" id="hamburger" aria-label="القائمة" aria-expanded="false">
         <span></span><span></span>
       </button>
     </div>
     <div class="mobile-menu" id="mobile-menu">
-      <a href="index.html#journal"  class="mobile-link">الدفتر</a>
-      <a href="index.html#features" class="mobile-link">التطبيق</a>
-      <a href="index.html#method"   class="mobile-link">المنهج</a>
-      <a href="index.html#phases"   class="mobile-link">٩٠ يومًا</a>
-      <a href="index.html#contact"  class="mobile-link">تواصل</a>
-      <a href="shop.html"           class="mobile-link">المتجر</a>
-      <a href="shop.html"           class="mobile-cta">اطلب مسبقًا</a>
+      <a href="/ar#ecosystem" class="mobile-link">المنظومة</a>
+      <a href="/ar#the-mind" class="mobile-link" lang="en">The Mind</a>
+      <a href="/ar#method" class="mobile-link">المنهج</a>
+      <a href="/ar#philosophy" class="mobile-link">الفلسفة</a>
+      <a href="/ar#faq" class="mobile-link">أسئلة شائعة</a>
+      <a href="/ar#contact" class="mobile-link">تواصل</a>
+      <a href="shop-ar.html" class="mobile-link">المتجر</a>
+      <a href="terms.html" class="mobile-link" lang="en" hreflang="en">English</a>
+      <a href="shop-ar.html" class="mobile-cta">اطلب الدفتر مسبقًا</a>
     </div>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-fill"></span></div>
   </nav>
 
   <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
@@ -312,7 +317,7 @@
     <div class="container">
       <span class="eyebrow">قانوني</span>
       <h1 class="pp-hero-title">الشروط والأحكام</h1>
-      <p class="pp-hero-meta">سارية من ١٧ سبتمبر ٢٠٢٦ &nbsp;·&nbsp; آخر تحديث ٢٢ سبتمبر ٢٠٢٦ &nbsp;·&nbsp; <a href="terms.html" class="pp-link" lang="en" hreflang="en">English</a></p>
+      <p class="pp-hero-meta">سارية من ١٧ سبتمبر ٢٠٢٦ &nbsp;·&nbsp; آخر تحديث ٦ أكتوبر ٢٠٢٦ &nbsp;·&nbsp; <a href="terms.html" class="pp-link" lang="en" hreflang="en">English</a></p>
     </div>
   </header>
 
@@ -380,7 +385,7 @@
           </div>
           <div class="pp-def-item">
             <span class="pp-def-term">الدفتر</span>
-            <span class="pp-def-desc">وايت ميرور &mdash; الدفتر: دفتر التدوين الموجَّه المطبوع لمدة ٩٠ يومًا، القائم على منهج <span class="ltr">M.I.R.R.O.R.</span> وهو المنتج الوحيد الذي نبيعه.</span>
+            <span class="pp-def-desc"><span class="ltr" lang="en">White Mirror Journal</span> (ويُباع باسم «وايت ميرور &mdash; الدفتر»): الدفتر المطبوع، الإصدار التأسيسي، القائم على منهج <span class="ltr">M.I.R.R.O.R.</span> وهو المنتج الوحيد الذي نبيعه.</span>
           </div>
           <div class="pp-def-item">
             <span class="pp-def-term">الرقم التسلسلي</span>
@@ -832,28 +837,35 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="footer-logo">WHITE MIRROR</span>
-        <p class="footer-tagline">نظام تدوين موجَّه لمن قرروا التوقف<br />عن الهروب من أنفسهم.</p>
-        <p class="footer-tagline">وايت ميرور &mdash; الدفتر منتج من منتجات وايت ميرور لابز.</p>
+        <span class="footer-logo" lang="en">WHITE MIRROR LABS</span>
+        <p class="footer-tagline">تقنية من أجل حياة أكثر إنسانية.</p>
+        <p class="footer-tagline">شركة لتنمية الإنسان تعمل بالذكاء الاصطناعي.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <span class="footer-col-label">الممارسة</span>
-          <a href="index.html#method"   class="footer-link">منهج <span class="ltr">M.I.R.R.O.R.</span></a>
-          <a href="index.html#phases"   class="footer-link">التسعون يومًا</a>
-          <a href="index.html#journal"  class="footer-link">الدفتر</a>
-          <a href="index.html#contact"  class="footer-link">تواصل معنا</a>
+          <span class="footer-col-label">المنظومة</span>
+          <a href="/ar#the-mind" class="footer-link"><span lang="en">The Mind</span> · <span lang="en">White Mirror Journal</span></a>
+          <span class="footer-link footer-link--muted"><span lang="en">The Body</span> · قريبًا</span>
+          <span class="footer-link footer-link--muted"><span lang="en">The Community</span> · قريبًا</span>
         </div>
         <div class="footer-col">
-          <span class="footer-col-label">التطبيق</span>
-          <a href="https://app.whitemirrorlabs.com" class="footer-link" target="_blank" rel="noopener">افتح التطبيق</a>
-          <a href="https://app.whitemirrorlabs.com/signup" class="footer-link" target="_blank" rel="noopener">إنشاء حساب</a>
-          <a href="https://app.whitemirrorlabs.com/login" class="footer-link" target="_blank" rel="noopener">تسجيل الدخول</a>
+          <span class="footer-col-label" lang="en">White Mirror Journal</span>
+          <a href="/ar#method" class="footer-link">منهج <span class="ltr" lang="en">M.I.R.R.O.R.</span></a>
+          <a href="/ar#features" class="footer-link">التطبيق المرافق</a>
+          <a href="shop-ar.html" class="footer-link">اطلب الدفتر مسبقًا</a>
+          <a href="/ar#waitlist" class="footer-link">قائمة انتظار التطبيق</a>
+          <a href="https://app.whitemirrorlabs.com/login" class="footer-link" rel="noopener">تسجيل الدخول للتطبيق</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">الشركة</span>
+          <a href="/ar#philosophy" class="footer-link">الفلسفة</a>
+          <a href="/ar#contact" class="footer-link">تواصل</a>
+          <a href="mailto:hello@whitemirrorlabs.com" class="footer-link ltr">hello@whitemirrorlabs.com</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© ٢٠٢٦ وايت ميرور لابز. جميع الحقوق محفوظة.</span>
+      <span class="footer-copy">© ٢٠٢٦ <span lang="en">White Mirror Labs</span>. جميع الحقوق محفوظة.</span>
       <div class="footer-bottom-links">
         <a href="privacy-ar.html" class="footer-legal-link">الخصوصية</a>
         <a href="terms-ar.html"   class="footer-legal-link">الشروط</a>
