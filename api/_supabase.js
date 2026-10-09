@@ -14,4 +14,25 @@ function supabaseAdmin() {
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
-module.exports = { supabaseAdmin };
+// Puts a failure on the admin's Issues screen. Repeats of the same `kind`
+// fold into one issue with a count, so pass a stable kind and put ids in
+// `detail`. Never throws and never blocks the caller: reporting a failure
+// must not become a second one.
+async function reportIssue(kind, severity, title, detail) {
+  try {
+    const admin = supabaseAdmin();
+    if (!admin) return;
+    const { error } = await admin.rpc('report_system_issue', {
+      p_source: 'website',
+      p_kind: kind,
+      p_severity: severity,
+      p_title: title,
+      p_detail: detail || {},
+    });
+    if (error) console.error(`reportIssue(${kind}) failed: ${error.message}`);
+  } catch (err) {
+    console.error(`reportIssue(${kind}) failed: ${err?.message || err}`);
+  }
+}
+
+module.exports = { supabaseAdmin, reportIssue };
