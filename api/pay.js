@@ -19,6 +19,18 @@ const JOURNAL_AMOUNT_MINOR = 49900;
 
 const SITE_BASE = process.env.SITE_BASE || 'https://www.whitemirrorlabs.com';
 
+// Same fallback as the ledger insert: a uid that no longer resolves must not
+// lose the order row, so retry it unattributed.
+async function recordOrder(admin, row) {
+  let { error } = await admin.from('orders').insert(row);
+  if (error && row.user_id) {
+    ({ error } = await admin.from('orders').insert({ ...row, user_id: null }));
+  }
+  if (error) {
+    console.error(`pay: order record failed for ${row.order_token}: ${error.message}`);
+  }
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -149,6 +161,29 @@ module.exports = async function handler(req, res) {
       );
       return res.status(500).json({ error: 'Could not start payment' });
     }
+
+    // 3. The order as the admin and the customer see it. pending_payments is
+    //    the anti-forgery ledger; orders is what gets packed. The webhook
+    //    flips this row to 'paid' by order_token, and a database trigger then
+    //    issues the journal's serial so the admin can print it for the box.
+    //
+    //    Best-effort, like the app's recordOrder: the ledger row above already
+    //    guards the grant, so a failure here costs an admin row, not the sale.
+    await recordOrder(admin, {
+      user_id: uid,
+      product: 'journal',
+      quantity: 1,
+      amount_egp: JOURNAL_AMOUNT_MINOR / 100,
+      order_token: session.id,
+      xpay_payment_id: session.id,
+      customer_email: String(email).trim(),
+      shipping_name: String(name).trim(),
+      shipping_phone: String(phone).trim(),
+      shipping_address: [address, city, governorate]
+        .map((part) => String(part).trim())
+        .filter(Boolean)
+        .join(', '),
+    });
 
     return res.status(200).json({
       checkout_url: session.url,
