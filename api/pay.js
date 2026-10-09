@@ -1,4 +1,4 @@
-const { supabaseAdmin } = require('./_supabase.js');
+const { supabaseAdmin, reportIssue } = require('./_supabase.js');
 
 // XPay v3 ("Checkout Sessions"). The legacy v1 community API this file used
 // before — prepare-amount + pay/variable-amount, x-api-key, community_id — is
@@ -28,6 +28,11 @@ async function recordOrder(admin, row) {
   }
   if (error) {
     console.error(`pay: order record failed for ${row.order_token}: ${error.message}`);
+    // The sale went through but nobody will see it to pack it.
+    await reportIssue('order_record_failed', 'critical',
+      'Website checkout could not record the order', {
+        order_token: row.order_token, customer: row.shipping_name, error: error.message,
+      });
   }
 }
 
@@ -66,6 +71,8 @@ module.exports = async function handler(req, res) {
   const secretKey = process.env.XPAY_SECRET_KEY;
   if (!secretKey) {
     console.error('pay: XPAY_SECRET_KEY not configured');
+    await reportIssue('xpay_not_configured', 'critical',
+      'Website checkout is down: XPAY_SECRET_KEY is not set', {});
     return res.status(500).json({ error: 'Payment service not configured' });
   }
 
@@ -74,6 +81,7 @@ module.exports = async function handler(req, res) {
     // Without Supabase nothing can be unlocked afterwards. Selling anyway would
     // take money for an app that stays shut.
     console.error('pay: Supabase env not configured — refusing to sell');
+    // reportIssue needs the same env, so this one can only reach the logs.
     return res.status(500).json({ error: 'Payment service not configured' });
   }
 
@@ -120,6 +128,11 @@ module.exports = async function handler(req, res) {
       console.error(
         `pay: session create failed (status ${sessionRes.status}, code ${session?.error?.code ?? 'n/a'})`,
       );
+      await reportIssue('xpay_session_failed', 'critical',
+        'Website checkout: XPay refused to open a payment', {
+          http_status: sessionRes.status, xpay_code: session?.error?.code ?? null,
+          xpay_message: session?.error?.message ?? null,
+        });
       return res.status(502).json({ error: 'Payment provider error' });
     }
 
@@ -159,6 +172,10 @@ module.exports = async function handler(req, res) {
       console.error(
         `pay: pending_payments insert failed for ${session.id}: ${insertErr.message}`,
       );
+      await reportIssue('ledger_insert_failed', 'critical',
+        'Website checkout: could not record the payment, sale refused', {
+          order_token: session.id, error: insertErr.message,
+        });
       return res.status(500).json({ error: 'Could not start payment' });
     }
 
@@ -177,6 +194,8 @@ module.exports = async function handler(req, res) {
       order_token: session.id,
       xpay_payment_id: session.id,
       customer_email: String(email).trim(),
+      // Which language the "your journal shipped" email is sent in.
+      lang,
       shipping_name: String(name).trim(),
       shipping_phone: String(phone).trim(),
       shipping_address: [address, city, governorate]
@@ -192,6 +211,9 @@ module.exports = async function handler(req, res) {
     });
   } catch (err) {
     console.error('Pay handler error:', err);
+    await reportIssue('pay_handler_error', 'error', 'Website checkout crashed', {
+      error: String(err?.message || err), stack: String(err?.stack || '').slice(0, 2000),
+    });
     return res.status(500).json({ error: 'Server error' });
   }
 };
