@@ -194,6 +194,8 @@ module.exports = async function handler(req, res) {
       order_token: session.id,
       xpay_payment_id: session.id,
       customer_email: String(email).trim(),
+      // Which language the "your journal shipped" email is sent in.
+      lang,
       shipping_name: String(name).trim(),
       shipping_phone: String(phone).trim(),
       shipping_address: [address, city, governorate]
