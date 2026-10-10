@@ -152,7 +152,10 @@
     var body = {
       name:  document.getElementById('wl-name').value.trim(),
       email: document.getElementById('wl-email').value.trim(),
-      phone: document.getElementById('wl-phone').value.trim()
+      phone: document.getElementById('wl-phone').value.trim(),
+      lang:  document.documentElement.lang === 'ar' ? 'ar' : 'en',
+      source: window.location.pathname,
+      company: (document.getElementById('wl-company') || {}).value || ''
     };
 
     try {
@@ -162,6 +165,7 @@
         body: JSON.stringify(body)
       });
       if (res.ok) {
+        if (window.va) window.va('event', { name: 'waitlist_signup', data: { lang: body.lang, page: body.source } });
         form.classList.add('hidden');
         document.getElementById('waitlist-success').classList.remove('hidden');
         return;

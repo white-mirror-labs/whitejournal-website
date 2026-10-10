@@ -71,4 +71,74 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/refund-ar" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/refund" />
   </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/ar</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/how-to-start-journaling</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/how-to-start-journaling" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/how-to-start-journaling" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/how-to-start-journaling" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/ar/how-to-start-journaling</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/how-to-start-journaling" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/how-to-start-journaling" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/how-to-start-journaling" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/journaling-prompts-for-self-reflection</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/journaling-prompts-for-self-reflection" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/journaling-prompts-for-self-reflection" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/journaling-prompts-for-self-reflection" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/ar/journaling-prompts-for-self-reflection</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/journaling-prompts-for-self-reflection" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/journaling-prompts-for-self-reflection" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/journaling-prompts-for-self-reflection" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/physical-journal-vs-journaling-app</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/physical-journal-vs-journaling-app" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/physical-journal-vs-journaling-app" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/physical-journal-vs-journaling-app" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/ar/physical-journal-vs-journaling-app</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/physical-journal-vs-journaling-app" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/physical-journal-vs-journaling-app" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/physical-journal-vs-journaling-app" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/what-is-reflective-journaling</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/what-is-reflective-journaling" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/what-is-reflective-journaling" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/what-is-reflective-journaling" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/guides/ar/what-is-reflective-journaling</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/guides/what-is-reflective-journaling" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/what-is-reflective-journaling" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/what-is-reflective-journaling" />
+  </url>
 </urlset>

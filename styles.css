@@ -1692,3 +1692,37 @@ section[id], .mind[id] { scroll-margin-top: calc(var(--nav-height) + 8px); }
 .hero-notice a { color: var(--ink); }
 [dir="rtl"] .shop-waitlist-lead { font-family: 'IBM Plex Sans Arabic', var(--font-body), sans-serif; }
 .shop-img-wrap { background: #f4f4f4; }
+.hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ═══════════════════════════════════════════════════════
+   GUIDES — journaling articles
+   ═══════════════════════════════════════════════════════ */
+.guide { padding: calc(var(--nav-height) + 4rem) 0 5rem; }
+.guide-wrap { max-width: 720px; }
+.guide-crumbs a { font-size: 13px; color: var(--tertiary); text-decoration: none; }
+.guide-crumbs a::before { content: '‹ '; }
+[dir="rtl"] .guide-crumbs a::before { content: '› '; }
+.guide-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.12; letter-spacing: -0.02em; margin: 0.75rem 0 1.25rem; }
+.guide-lead { font-size: 1.15rem; line-height: 1.7; color: var(--secondary); margin-bottom: 2.5rem; }
+.guide-body h2, .guide-faq h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; letter-spacing: -0.01em; margin: 2.75rem 0 0.9rem; }
+.guide-body p, .guide-body li { font-size: 1.02rem; line-height: 1.8; color: var(--graphite); }
+.guide-body p { margin-bottom: 1.1rem; }
+.guide-body ul, .guide-body ol { margin: 0 0 1.25rem 1.25rem; }
+[dir="rtl"] .guide-body ul, [dir="rtl"] .guide-body ol { margin: 0 1.25rem 1.25rem 0; }
+.guide-body li { margin-bottom: 0.45rem; }
+.guide-body a { color: var(--ink); }
+.guide-body blockquote { border-inline-start: 2px solid var(--border-mid); padding: 0.25rem 0 0.25rem 1.25rem; margin: 1.5rem 0; color: var(--secondary); }
+[dir="rtl"] .guide-body blockquote { padding: 0.25rem 1.25rem 0.25rem 0; }
+.guide-faq { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.guide-faq-item h3 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.4rem; }
+.guide-faq-item p { font-size: 0.98rem; line-height: 1.7; color: var(--secondary); }
+.guide-cta { margin-top: 3.5rem; padding: 2rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-warm); text-align: center; }
+.guide-cta-label { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tertiary); margin-bottom: 0.6rem; }
+.guide-cta-text { color: var(--secondary); line-height: 1.6; margin-bottom: 1.25rem; }
+.guide-list { display: grid; gap: 1rem; margin-top: 1rem; }
+.guide-card { display: block; padding: 1.5rem 1.75rem; border: 1px solid var(--border); border-radius: var(--radius-md); text-decoration: none; color: var(--ink); transition: border-color 0.2s ease; }
+.guide-card:hover { border-color: var(--ink); }
+.guide-card h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; margin-bottom: 0.4rem; }
+.guide-card p { font-size: 14px; line-height: 1.6; color: var(--secondary); }
+[dir="rtl"] .guide-title, [dir="rtl"] .guide-body h2, [dir="rtl"] .guide-faq h2, [dir="rtl"] .guide-card h2 { font-family: 'Noto Naskh Arabic', var(--font-lora), serif; letter-spacing: 0; }
+[dir="rtl"] .guide-lead, [dir="rtl"] .guide-body, [dir="rtl"] .guide-faq, [dir="rtl"] .guide-cta, [dir="rtl"] .guide-card p, [dir="rtl"] .guide-crumbs { font-family: 'IBM Plex Sans Arabic', var(--font-body), sans-serif; }
