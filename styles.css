@@ -1632,7 +1632,7 @@ section[id], .mind[id] { scroll-margin-top: calc(var(--nav-height) + 8px); }
 
 /* Nav fits the longer link set and brand name without wrapping. */
 .nav-logo, .nav-link, .nav-cta { white-space: nowrap; }
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   .nav-cta-long { display: none; }
   .nav-links .nav-link[href="#contact"] { display: none; }
 }
