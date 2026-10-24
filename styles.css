@@ -1726,3 +1726,81 @@ section[id], .mind[id] { scroll-margin-top: calc(var(--nav-height) + 8px); }
 .guide-card p { font-size: 14px; line-height: 1.6; color: var(--secondary); }
 [dir="rtl"] .guide-title, [dir="rtl"] .guide-body h2, [dir="rtl"] .guide-faq h2, [dir="rtl"] .guide-card h2 { font-family: 'Noto Naskh Arabic', var(--font-lora), serif; letter-spacing: 0; }
 [dir="rtl"] .guide-lead, [dir="rtl"] .guide-body, [dir="rtl"] .guide-faq, [dir="rtl"] .guide-cta, [dir="rtl"] .guide-card p, [dir="rtl"] .guide-crumbs { font-family: 'IBM Plex Sans Arabic', var(--font-body), sans-serif; }
+
+
+/* ═══════════════════════════════════════════════════════
+   Two-page structure
+   Labs home (lh-): the company, confident and spare.
+   Journal page (jp-): the product, quiet and paper-like.
+   ═══════════════════════════════════════════════════════ */
+
+/* Journal page: the global bar scrolls away; the local bar takes over. */
+.nav--static { position: relative; background: var(--bg); border-bottom-color: var(--border); }
+
+/* ── Labs home ── */
+.hero--labs { padding-bottom: 4rem; }
+.lh-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 1100px; margin: 3.5rem auto 0; padding: 0 var(--gutter); }
+.lh-tile { position: relative; overflow: hidden; border-radius: var(--radius-lg); padding: 3.5rem 2rem; text-align: center; background: var(--bg-warm); border: 1px solid var(--border); }
+.lh-tile-line { font-size: 15px; font-weight: 500; color: var(--tertiary); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.lh-tile-name { font-family: var(--font-display); font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; }
+.lh-tile-desc { margin: 0.9rem auto 0; max-width: 360px; font-size: 1rem; color: var(--secondary); line-height: 1.5; }
+.lh-tile-status { display: inline-block; margin-top: 1.5rem; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tertiary); border: 1px solid var(--border-mid); border-radius: 100px; padding: 0.3rem 0.9rem; }
+.lh-tile--mind { grid-column: 1 / -1; background: var(--ink); border-color: var(--ink); color: var(--bg); padding: 5rem 2rem 0; }
+.lh-tile--mind .lh-tile-line { color: var(--on-dark-muted); }
+.lh-tile--mind .lh-tile-name { font-size: clamp(2.4rem, 6vw, 4.2rem); }
+.lh-tile--mind .lh-tile-desc { color: var(--on-dark); max-width: 460px; font-size: 1.15rem; }
+.lh-tile--mind .btn-primary { background: var(--bg); color: var(--ink); margin-top: 1.75rem; }
+.lh-tile-note { margin-top: 1rem; font-size: 13px; color: var(--on-dark-muted); }
+.lh-tile-img { display: block; margin: 3rem auto 0; width: min(460px, 78%); height: auto; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.lh-about { padding: 6rem 0; }
+.lh-about .section-sub { max-width: 560px; }
+.fold-list { max-width: 720px; margin: 3rem auto 0; border-top: 1px solid var(--border); }
+.fold { border-bottom: 1px solid var(--border); }
+.fold summary { cursor: pointer; list-style: none; padding: 1.25rem 0; font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em; display: flex; justify-content: space-between; gap: 1rem; }
+.fold summary::-webkit-details-marker { display: none; }
+.fold summary::after { content: '+'; color: var(--tertiary); font-weight: 400; transition: transform 0.2s ease; }
+.fold[open] summary::after { transform: rotate(45deg); }
+.fold p { padding: 0 0 1.4rem; color: var(--secondary); line-height: 1.65; max-width: 620px; }
+.fold summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+
+/* ── Journal page ── */
+.jp-nav { position: sticky; top: 0; z-index: 90; background: rgba(250,250,248,0.9); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); }
+.jp-nav-inner { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); height: 52px; display: flex; align-items: center; gap: 1.5rem; }
+.jp-nav-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: -0.01em; margin-right: auto; white-space: nowrap; }
+.jp-nav-links { display: flex; gap: 1.5rem; }
+.jp-nav-links a { font-size: 13px; color: var(--secondary); text-decoration: none; padding: 1rem 0 calc(1rem - 2px); border-bottom: 2px solid transparent; }
+.jp-nav-links a:hover, .jp-nav-links a.is-active { color: var(--ink); }
+.jp-nav-links a.is-active { border-bottom-color: var(--ink); }
+.jp-nav-cta { font-size: 12px; color: var(--bg); background: var(--ink); text-decoration: none; padding: 0.45rem 1rem; border-radius: 100px; white-space: nowrap; }
+.jp-nav-cta:hover { opacity: 0.8; }
+.jp-nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+.jp-hero { padding: 6rem 0 4rem; text-align: center; background: var(--bg-warm); }
+.jp-hero .eyebrow { margin-bottom: 1.25rem; }
+.jp-title { font-family: var(--font-display); font-size: clamp(2.6rem, 6.5vw, 5rem); font-weight: 400; line-height: 1.04; letter-spacing: -0.03em; }
+.jp-title em { display: block; font-style: italic; color: var(--secondary); }
+.jp-lead { max-width: 520px; margin: 1.5rem auto 0; font-size: 1.15rem; color: var(--secondary); line-height: 1.55; }
+.jp-note { margin: 2rem auto 0; max-width: 420px; font-size: 13px; color: var(--tertiary); }
+.jp-hero-img { display: block; margin: 3.5rem auto 0; width: min(680px, 100%); height: auto; mix-blend-mode: multiply; }
+.jp-why { padding: 7rem 0; text-align: center; }
+.jp-why .section-title { max-width: 760px; }
+.jp-why .section-sub { max-width: 560px; }
+.jp-alt { background: var(--bg-warm); }
+.jp-byline { padding: 2.5rem 0; text-align: center; font-size: 14px; color: var(--tertiary); border-top: 1px solid var(--border); }
+.jp-byline a { color: var(--ink); }
+.jp-section-note { text-align: center; margin-top: 2.5rem; font-size: 14px; color: var(--tertiary); }
+.jp-wait .waitlist-card { background: var(--bg); }
+
+@media (max-width: 860px) {
+  .jp-nav-links { display: none; }
+  .jp-nav-inner { justify-content: space-between; }
+}
+@media (max-width: 768px) {
+  .lh-tiles { grid-template-columns: 1fr; }
+  .lh-tile { padding: 3rem 1.5rem; }
+  .lh-tile--mind { padding: 4rem 1.5rem 0; }
+  .jp-hero { padding: 4rem 0 3rem; }
+  .jp-why { padding: 5rem 0; }
+  /* Footer links were 15-17px tall: too small for a thumb. */
+  .footer-link, .footer-legal-link { display: inline-block; padding: 0.5rem 0; }
+  .footer-col { gap: 0; }
+}

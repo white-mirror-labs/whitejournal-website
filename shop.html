@@ -36,9 +36,21 @@
   <meta name="twitter:title" content="White Mirror Journal — Join the Waitlist" />
   <meta name="twitter:description" content="White Mirror Journal is a physical journal for self-reflection and self-awareness, with a companion journaling app. Built on the M.I.R.R.O.R. method by White Mirror Labs in Egypt. Join the waitlist." />
   <meta name="twitter:image" content="https://www.whitemirrorlabs.com/assets/og-labs.jpg" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.whitemirrorlabs.com/#org", "name": "White Mirror Labs", "url": "https://www.whitemirrorlabs.com/", "logo": "https://www.whitemirrorlabs.com/icons/Icon-512.png", "email": "hello@whitemirrorlabs.com", "description": "White Mirror Labs is an AI-powered human development company. Its business lines are The Mind, The Body (coming soon) and The Community.", "address": {"@type": "PostalAddress", "streetAddress": "128 Degla Gardens, October Gardens", "addressLocality": "Giza", "addressCountry": "EG"}}, {"@type": "Product", "@id": "https://www.whitemirrorlabs.com/shop#product", "name": "White Mirror Journal", "description": "White Mirror Journal is a physical journal for self-reflection paired with a journaling app, built on the M.I.R.R.O.R. method. The first product from The Mind, a White Mirror Labs business line. Coming soon in Egypt.", "image": ["https://www.whitemirrorlabs.com/assets/journal-front-900.jpg", "https://www.whitemirrorlabs.com/assets/journal-views-1536.jpg"], "brand": {"@type": "Brand", "name": "White Mirror Journal"}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.whitemirrorlabs.com/#org", "name": "White Mirror Labs", "url": "https://www.whitemirrorlabs.com/", "logo": "https://www.whitemirrorlabs.com/icons/Icon-512.png", "email": "hello@whitemirrorlabs.com", "description": "White Mirror Labs is an AI-powered human development company. Its business lines are The Mind, The Body (coming soon) and The Community.", "address": {"@type": "PostalAddress", "streetAddress": "128 Degla Gardens, October Gardens", "addressLocality": "Giza", "addressCountry": "EG"}}, {"@type": "Product", "@id": "https://www.whitemirrorlabs.com/shop#product", "name": "White Mirror Journal", "description": "White Mirror Journal is a physical journal for self-reflection paired with a journaling app, built on the M.I.R.R.O.R. method. The first product from The Mind, a White Mirror Labs business line. Coming soon in Egypt.", "image": ["https://www.whitemirrorlabs.com/assets/journal-front-900.jpg", "https://www.whitemirrorlabs.com/assets/journal-views-1536.jpg"], "brand": {"@type": "Brand", "name": "White Mirror Journal"}}, {"@type": "FAQPage", "@id": "https://www.whitemirrorlabs.com/shop#faq", "mainEntity": [{"@type": "Question", "name": "What is White Mirror Journal?", "acceptedAnswer": {"@type": "Answer", "text": "A physical journal paired with a companion app, built on the M.I.R.R.O.R. method. The journal is a private, flexible space to write and reflect without digital distractions. The app adds daily prompts, mood exploration, guided breathing and insights into recurring patterns."}}, {"@type": "Question", "name": "Is the journal a 90-day program?", "acceptedAnswer": {"@type": "Answer", "text": "No. The physical journal is a flexible space you can use as you like. The Foundation Edition, Discover Yourself, adds a guided 90-day journey in five phases for those who want structure."}}, {"@type": "Question", "name": "When can I get it?", "acceptedAnswer": {"@type": "Answer", "text": "Pre-orders are paused while we prepare the first run. Join the waitlist and you will hear first when White Mirror Journal is available in Egypt, with price and delivery details."}}, {"@type": "Question", "name": "Can I use the app without the Journal?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The companion app works on its own, and works best alongside the journal. It opens soon; join the waitlist for early access."}}, {"@type": "Question", "name": "Can I return it?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Once orders open, you will have 14 days from delivery to return the Journal without giving a reason, we collect it at no cost, and the refund is sent within 7 days. Damaged or wrong items are always put right at our cost."}}, {"@type": "Question", "name": "Is the Journal in Arabic?", "acceptedAnswer": {"@type": "Answer", "text": "The first edition is printed in English, and its pages are designed to be written in whichever language your pen prefers. The Terms, Privacy and Refund pages are available in Arabic, and support answers in Arabic."}}]}]}</script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
+  <script>
+  /* Opt in to reveal animations before first paint, so above-the-fold content
+     is never painted visible and then snapped to opacity 0. Without this class
+     every .reveal element stays plainly visible — which is also what happens
+     with JS off or reduced motion on. */
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reduce) {
+      document.documentElement.classList.add('has-motion');
+    }
+  })();
+  </script>
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -46,110 +58,329 @@
 <body>
 
   <!-- NAV -->
-  <nav class="nav" id="nav">
+  <nav class="nav nav--static" id="nav">
     <div class="nav-inner">
       <a href="/" class="nav-logo" lang="en">WHITE MIRROR <span class="nav-logo-sub">LABS</span></a>
       <div class="nav-links">
-        <a href="/#ecosystem" class="nav-link">Ecosystem</a>
-        <a href="/#the-mind" class="nav-link">The Mind</a>
-        <a href="/#method" class="nav-link">Method</a>
-        <a href="/#philosophy" class="nav-link">Philosophy</a>
-        <a href="/#faq" class="nav-link">FAQ</a>
+        <a href="/shop" class="nav-link">The Journal</a>
+        <a href="/guides" class="nav-link">Guides</a>
+        <a href="/#about" class="nav-link">About</a>
         <a href="/#contact" class="nav-link">Contact</a>
-        <a href="shop.html" class="nav-link">The Journal</a>
         <a href="shop-ar.html" class="nav-link" lang="ar" hreflang="ar">العربية</a>
       </div>
-      <a href="#waitlist" class="nav-cta">Join<span class="nav-cta-long"> the</span> waitlist</a>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span>
       </button>
     </div>
     <div class="mobile-menu" id="mobile-menu">
-      <a href="/#ecosystem" class="mobile-link">Ecosystem</a>
-      <a href="/#the-mind" class="mobile-link">The Mind</a>
-      <a href="/#method" class="mobile-link">Method</a>
-      <a href="/#philosophy" class="mobile-link">Philosophy</a>
-      <a href="/#faq" class="mobile-link">FAQ</a>
+      <a href="/shop" class="mobile-link">The Journal</a>
+      <a href="/guides" class="mobile-link">Guides</a>
+      <a href="/#about" class="mobile-link">About</a>
       <a href="/#contact" class="mobile-link">Contact</a>
-      <a href="shop.html" class="mobile-link">The Journal</a>
       <a href="shop-ar.html" class="mobile-link" lang="ar" hreflang="ar">العربية</a>
-      <a href="#waitlist" class="mobile-cta">Join the waitlist</a>
     </div>
     <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-fill"></span></div>
   </nav>
 
-  <!-- SHOP -->
-  <section class="shop-section">
+  <!-- LOCAL NAV: the product's own table of contents, and the one button -->
+  <div class="jp-nav" id="jp-nav">
+    <div class="jp-nav-inner">
+      <span class="jp-nav-title">White Mirror Journal</span>
+      <div class="jp-nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#app">The App</a>
+        <a href="#method">The Method</a>
+        <a href="#phases">Foundation</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#waitlist" class="jp-nav-cta">Join the waitlist</a>
+    </div>
+  </div>
+
+  <main>
+
+  <!-- HERO -->
+  <section class="jp-hero" id="overview">
     <div class="container">
-      <div class="shop-layout">
+      <p class="eyebrow">The Mind &middot; from White Mirror Labs</p>
+      <h1 class="jp-title">White Mirror Journal.<em>A private space, on paper.</em></h1>
+      <p class="jp-lead">A physical journal and a companion app, built as one practice. You write by hand, in a private space. The app helps you notice, organize and understand what you wrote.</p>
+      <p class="jp-note">Pre-orders are paused while we prepare the first run. The waitlist hears first.</p>
+      <picture>
+        <source type="image/webp" srcset="assets/journal-views-768.webp 768w, assets/journal-views-1536.webp 1536w" sizes="(max-width: 768px) 92vw, 680px" />
+        <img class="jp-hero-img" src="assets/journal-views-1536.jpg" alt="White Mirror Journal from the front, back and spine: a white hardcover with the White Mirror wordmark" width="1536" height="1024" decoding="async" />
+      </picture>
+    </div>
+  </section>
 
-        <!-- LEFT: Product -->
-        <div class="shop-product">
-          <div class="shop-img-wrap">
-            <picture>
-              <source type="image/webp" srcset="assets/journal-front-640.webp 640w, assets/journal-front-900.webp 900w" sizes="(max-width: 768px) 92vw, 520px" />
-              <img src="assets/journal-front-900.jpg" alt="White Mirror Journal, a white hardcover journal with the White Mirror wordmark" class="shop-journal-img" width="900" height="900" decoding="async" fetchpriority="high" />
-            </picture>
-          </div>
-          <p class="shop-eyebrow">White Mirror Journal &middot; The Mind &middot; The Foundation Edition</p>
-          <h1 class="shop-title">White Mirror Journal.<br /><em>A private space, on paper.</em></h1>
-          <p class="shop-desc">
-            White Mirror Journal, from White Mirror Labs: a physical journal, built on the M.I.R.R.O.R. method, for writing and reflecting without digital distractions. It pairs with a companion app for daily prompts, mood exploration, guided breathing and insights.
-          </p>
+  <!-- WHY -->
+  <section class="jp-why">
+    <div class="container">
+      <p class="section-label">Why it exists</p>
+      <h2 class="section-title">Most of us feel more than we understand.</h2>
+      <p class="section-sub">A blank notebook gives room without direction. An app alone is one more screen. White Mirror Journal pairs the two, and leaves the meaning to you.</p>
+    </div>
+  </section>
 
-          <ul class="shop-includes">
-            <li>
-              <span class="shop-check">✓</span>
-              <span>A flexible, reusable space for writing and reflection</span>
-            </li>
-            <li>
-              <span class="shop-check">✓</span>
-              <span>Built on the M.I.R.R.O.R. method</span>
-            </li>
-            <li>
-              <span class="shop-check">✓</span>
-              <span>The Foundation Edition: a guided 90-day journey in five phases</span>
-            </li>
-            <li>
-              <span class="shop-check">✓</span>
-              <span>A companion app for iOS and Android, opening soon</span>
-            </li>
-          </ul>
+  <!-- THE TWO PARTS + HOW THEY WORK TOGETHER -->
+  <section class="section jp-alt">
+    <div class="container">
+        <div class="duo">
+          <article class="duo-card">
+            <div class="duo-figure duo-figure--paper">
+              <svg class="journal-anim" aria-hidden="true" focusable="false" width="100%" viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+            <clipPath id="jmMirror"><circle cx="240" cy="172" r="46"/></clipPath>
+            <text x="240" y="46" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" letter-spacing="5" fill="var(--tertiary)">WHITE MIRROR</text>
+            <g class="jm-breathe">
+              <rect x="165" y="88" width="150" height="192" rx="9" fill="#ffffff" stroke="#d1cec9" stroke-width="1"/>
+              <line x1="185" y1="92" x2="185" y2="276" stroke="#e8e6e1" stroke-width="1"/>
+              <circle class="jm-ripple" cx="240" cy="172" r="46" fill="none" stroke="var(--quaternary)" stroke-width="1"/>
+              <circle cx="240" cy="172" r="46" fill="none" stroke="#0a0a0a" stroke-width="1.4"/>
+              <g clip-path="url(#jmMirror)">
+                <rect class="jm-shine" x="232" y="120" width="16" height="104" fill="#ffffff" opacity="0.7" transform="rotate(22 240 172)"/>
+              </g>
+            </g>
+            <text x="240" y="322" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="17" fill="#515154">The mirror that never lies.</text>
+          </svg>
+            </div>
+            <p class="duo-label">The Physical Journal</p>
+            <h3 class="duo-title">A private space, on paper.</h3>
+            <p class="duo-desc">A tangible place for writing, reflection, and reconnecting with yourself without digital distractions. Flexible and reusable: you decide what goes on the page.</p>
+          </article>
+          <div class="duo-link" aria-hidden="true"><span></span></div>
+          <article class="duo-card">
+            <div class="duo-figure duo-figure--app" aria-hidden="true"><span>Today</span><span>Patterns</span><span>Meditate</span><span>Profile</span></div>
+            <p class="duo-label">The Companion App</p>
+            <h3 class="duo-title">A daily experience that adapts.</h3>
+            <p class="duo-desc">Daily prompts, mood exploration, guided breathing, and a view of recurring patterns across your entries. Scan handwritten pages into the app, where supported.</p>
+          </article>
         </div>
 
-        <!-- RIGHT: Waitlist (pre-orders paused) -->
-        <div class="shop-form-wrap" id="waitlist">
-          <div class="shop-form-card">
-            <p class="shop-form-heading">Join the waitlist</p>
-            <p class="shop-waitlist-lead">Pre-orders are paused while we prepare the first run. Leave your details and you will hear first when White Mirror Journal and its app open, with price and delivery details.</p>
-            <form class="waitlist-form" id="waitlist-form" data-busy="Submitting…" data-error="Something went wrong. Please email us at hello@whitemirrorlabs.com">
-              <div class="waitlist-field">
-                <label for="wl-name" class="waitlist-label">Full Name</label>
-                <input type="text" id="wl-name" name="name" placeholder="Your name" required class="waitlist-input" autocomplete="name" />
-              </div>
-              <div class="waitlist-field">
-                <label for="wl-email" class="waitlist-label">Email Address</label>
-                <input type="email" id="wl-email" name="email" placeholder="your@email.com" required class="waitlist-input" autocomplete="email" />
-              </div>
-              <div class="waitlist-field">
-                <label for="wl-phone" class="waitlist-label">Phone Number <span class="waitlist-optional">(optional)</span></label>
-                <input type="tel" id="wl-phone" name="phone" placeholder="+20 000 000 0000" class="waitlist-input" autocomplete="tel" />
-              </div>
-              <div class="hp-field" aria-hidden="true"><label for="wl-company">Company</label><input type="text" id="wl-company" name="company" tabindex="-1" autocomplete="off" /></div>
-              <button type="submit" class="btn-primary waitlist-submit" id="waitlist-submit">Join the Waitlist</button>
-              <p class="waitlist-notice">No spam. Only meaningful updates. See our <a href="privacy.html">Privacy Policy</a>.</p>
-            </form>
-            <div class="waitlist-success hidden" id="waitlist-success">
-              <div class="waitlist-success-icon">✦</div>
-              <h3>You're on the list.</h3>
-              <p>We'll let you know the moment White Mirror Journal and the app open.</p>
-            </div>
+        <div class="together">
+          <p class="together-label">How they work together</p>
+          <ol class="together-steps">
+            <li><strong>Write</strong> by hand, as freely as you like.</li>
+            <li><strong>Bring it in</strong> by scanning a page or answering a prompt.</li>
+            <li><strong>Notice</strong> possible patterns the app surfaces.</li>
+            <li><strong>Return</strong> to the page with more clarity.</li>
+          </ol>
+        </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+    <section class="section" id="app">
+      <div class="container">
+        <div class="features-header">
+          <p class="section-label">The Companion App</p>
+          <h2 class="section-title">Four tabs.<br />One complete practice.</h2>
+          <p class="section-sub">Intelligent technology helps you reflect, organize your experiences and notice possible patterns. You stay in control of what they mean.</p>
+        </div>
+
+      <div class="app-showcase">
+
+        <div class="app-blurbs">
+          <div class="app-blurb">
+            <p class="feature-tab">Today</p>
+            <h3 class="feature-title">Your day, distilled.</h3>
+            <p class="feature-desc">How you feel, one prompt, and space to write. Sleep and HRV sit at a glance when you connect your health data. Every entry is encrypted with a key of your own, and pages from your paper journal can come in by camera.</p>
           </div>
+
+          <div class="app-blurb">
+            <p class="feature-tab">Patterns</p>
+            <h3 class="feature-title">See what keeps returning.</h3>
+            <p class="feature-desc">Your moods and entries across time. Insights point out possible patterns; they suggest, and you decide what they mean.</p>
+          </div>
+
+          <div class="app-blurb">
+            <p class="feature-tab">Meditate</p>
+            <h3 class="feature-title">Breathe on purpose.</h3>
+            <p class="feature-desc">Guided, silent, or with music. One animated circle paces the breath for you, with ambient channels for the whole session.</p>
+          </div>
+
+          <div class="app-blurb">
+            <p class="feature-tab">Profile</p>
+            <h3 class="feature-title">Your practice, in one place.</h3>
+            <p class="feature-desc">Your streak, your progress through the Foundation journey, and your account.</p>
+          </div>
+        </div>
+
+        <div class="app-phone-wrap">
+          <figure class="app-shot">
+            <picture>
+              <source type="image/webp" srcset="assets/app-today-420.webp 420w, assets/app-today-840.webp 840w" sizes="300px" />
+              <img src="assets/app-today-840.jpg" alt="The White Mirror app on the Today screen: day 10 of 90 in Phase 1, sleep and HRV at a glance, a card asking how you are feeling today, the Vision card, a prompt to write a message you will not send, and the Today, Patterns, Meditate and Profile tabs." width="840" height="1820" loading="lazy" decoding="async" />
+            </picture>
+          </figure>
         </div>
 
       </div>
+      </div>
+    </section>
+
+  <div class="divider"></div>
+
+    <section class="section method-section" id="method">
+      <div class="container">
+        <p class="section-label">The Method</p>
+        <h2 class="section-title">The M.I.R.R.O.R. Method.</h2>
+        <p class="section-sub">The guiding framework behind the practice. From noticing how you feel to choosing what comes next.</p>
+
+        <ol class="mirror-grid">
+          <li class="mirror-item">
+            <div class="mirror-letter">M</div>
+            <div class="mirror-word">Mood</div>
+            <p class="mirror-desc">Notice how you feel.</p>
+          </li>
+          <li class="mirror-item">
+            <div class="mirror-letter">I</div>
+            <div class="mirror-word">Identify</div>
+            <p class="mirror-desc">Name what is happening within you.</p>
+          </li>
+          <li class="mirror-item">
+            <div class="mirror-letter">R</div>
+            <div class="mirror-word">Reflect</div>
+            <p class="mirror-desc">Explore what may be behind it.</p>
+          </li>
+          <li class="mirror-item">
+            <div class="mirror-letter">R</div>
+            <div class="mirror-word">Reframe</div>
+            <p class="mirror-desc">Consider another perspective.</p>
+          </li>
+          <li class="mirror-item">
+            <div class="mirror-letter">O</div>
+            <div class="mirror-word">Observe</div>
+            <p class="mirror-desc">Recognize patterns and changes over time.</p>
+          </li>
+          <li class="mirror-item">
+            <div class="mirror-letter">R</div>
+            <div class="mirror-word">Resolve</div>
+            <p class="mirror-desc">Choose a meaningful next step.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  <div class="divider"></div>
+
+      <section class="section" id="phases">
+        <div class="container">
+          <p class="section-label">The Foundation Edition</p>
+          <h2 class="section-title">A guided journey,<br />for those who want structure.</h2>
+          <p class="section-sub">Discover Yourself is a guided 90-day path in five phases. It is one way to use White Mirror. The journal itself stays open to however you want to write.</p>
+
+          <div class="phases-grid">
+            <div class="phase-card">
+              <div class="phase-num">I</div>
+              <p class="phase-days-label">Days 1 – 18</p>
+              <h3 class="phase-title">Begin</h3>
+              <p class="phase-desc"><em>You cannot change what you cannot see.</em> Slow down and name the honest feeling.</p>
+            </div>
+            <div class="phase-card">
+              <div class="phase-num">II</div>
+              <p class="phase-days-label">Days 19 – 36</p>
+              <h3 class="phase-title">Look Deeper</h3>
+              <p class="phase-desc"><em>Awareness without depth is just observation.</em> Look beneath the first answer, to understand rather than blame.</p>
+            </div>
+            <div class="phase-card">
+              <div class="phase-num">III</div>
+              <p class="phase-days-label">Days 37 – 54</p>
+              <h3 class="phase-title">The Shift</h3>
+              <p class="phase-desc"><em>You've seen clearly. Now you interpret differently.</em> Rigid stories loosen into self-compassion.</p>
+            </div>
+            <div class="phase-card">
+              <div class="phase-num">IV</div>
+              <p class="phase-days-label">Days 55 – 72</p>
+              <h3 class="phase-title">See the Pattern</h3>
+              <p class="phase-desc"><em>A recognized pattern changes a life.</em> Triggers and loops become visible across time.</p>
+            </div>
+            <div class="phase-card">
+              <div class="phase-num">V</div>
+              <p class="phase-days-label">Days 73 – 90</p>
+              <h3 class="phase-title">Become</h3>
+              <p class="phase-desc"><em>Self-awareness without action is autobiography.</em> Choose one honest next step, and live it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Questions,<br />answered.</h2>
+      <div class="fold-list">
+        <details class="fold">
+          <summary>What is White Mirror Journal?</summary>
+          <p>A physical journal paired with a companion app, built on the M.I.R.R.O.R. method. The journal is a private, flexible space to write and reflect without digital distractions. The app adds daily prompts, mood exploration, guided breathing and insights into recurring patterns.</p>
+        </details>
+        <details class="fold">
+          <summary>Is the journal a 90-day program?</summary>
+          <p>No. The physical journal is a flexible space you can use as you like. The Foundation Edition, Discover Yourself, adds a guided 90-day journey in five phases for those who want structure.</p>
+        </details>
+        <details class="fold">
+          <summary>When can I get it?</summary>
+          <p>Pre-orders are paused while we prepare the first run. Join the waitlist and you will hear first when White Mirror Journal is available in Egypt, with price and delivery details.</p>
+        </details>
+        <details class="fold">
+          <summary>Can I use the app without the Journal?</summary>
+          <p>Yes. The companion app works on its own, and works best alongside the journal. It opens soon; join the waitlist for early access.</p>
+        </details>
+        <details class="fold">
+          <summary>Can I return it?</summary>
+          <p>Yes. Once orders open, you will have 14 days from delivery to return the Journal without giving a reason, we collect it at no cost, and the refund is sent within 7 days. Damaged or wrong items are always put right at our cost.</p>
+        </details>
+        <details class="fold">
+          <summary>Is the Journal in Arabic?</summary>
+          <p>The first edition is printed in English, and its pages are designed to be written in whichever language your pen prefers. The Terms, Privacy and Refund pages are available in Arabic, and support answers in Arabic.</p>
+        </details>
+      </div>
     </div>
   </section>
+
+  <!-- WAITLIST: the one ending -->
+  <section class="section jp-alt jp-wait" id="waitlist">
+    <div class="container">
+      <div class="waitlist-card">
+        <div class="waitlist-header">
+          <p class="section-label">Early Access</p>
+          <h2 class="section-title">Be the first to know.</h2>
+          <p class="section-sub">White Mirror Journal and its companion app open soon. Pre-orders are paused while we prepare the first run. Join the waitlist to hear first, with price and delivery details.</p>
+        </div>
+        <form class="waitlist-form" id="waitlist-form" data-busy="Submitting…" data-error="Something went wrong. Please email us at hello@whitemirrorlabs.com">
+          <div class="waitlist-row">
+            <div class="waitlist-field">
+              <label for="wl-name" class="waitlist-label">Full Name</label>
+              <input type="text" id="wl-name" name="name" placeholder="Your name" required class="waitlist-input" autocomplete="name" />
+            </div>
+            <div class="waitlist-field">
+              <label for="wl-email" class="waitlist-label">Email Address</label>
+              <input type="email" id="wl-email" name="email" placeholder="your@email.com" required class="waitlist-input" autocomplete="email" />
+            </div>
+          </div>
+          <div class="waitlist-field">
+            <label for="wl-phone" class="waitlist-label">Phone Number <span class="waitlist-optional">(optional)</span></label>
+            <input type="tel" id="wl-phone" name="phone" placeholder="+20 000 000 0000" class="waitlist-input" autocomplete="tel" />
+          </div>
+          <div class="hp-field" aria-hidden="true"><label for="wl-company">Company</label><input type="text" id="wl-company" name="company" tabindex="-1" autocomplete="off" /></div>
+          <button type="submit" class="btn-primary waitlist-submit" id="waitlist-submit">Join the Waitlist</button>
+          <p class="waitlist-notice">No spam. Only meaningful updates. See our <a href="privacy.html">Privacy Policy</a>.</p>
+        </form>
+        <div class="waitlist-success hidden" id="waitlist-success">
+          <div class="waitlist-success-icon">✦</div>
+          <h3>You're on the list.</h3>
+          <p>We'll let you know the moment White Mirror Journal and the app open.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="jp-byline">White Mirror Journal is made by <a href="/">White Mirror Labs</a>.</p>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -161,17 +392,17 @@
       </div>
       <div class="footer-links">
         <div class="footer-col">
-          <span class="footer-col-label">Ecosystem</span>
-          <a href="/#the-mind" class="footer-link">The Mind &middot; White Mirror Journal</a>
+          <span class="footer-col-label">Products</span>
+          <a href="/shop" class="footer-link">White Mirror Journal</a>
           <span class="footer-link footer-link--muted">The Body &middot; Coming Soon</span>
-          <span class="footer-link footer-link--muted">The Community &middot; Coming Soon</span>
+          <span class="footer-link footer-link--muted">White Mirror Space &middot; Coming Soon</span>
         </div>
         <div class="footer-col">
           <span class="footer-col-label">White Mirror Journal</span>
-          <a href="/#method" class="footer-link">The M.I.R.R.O.R. Method</a>
-          <a href="/#features" class="footer-link">The Companion App</a>
-          <a href="shop.html" class="footer-link">The Journal</a>
-          <a href="/#waitlist" class="footer-link">Join the Waitlist</a>
+          <a href="/shop#app" class="footer-link">The Companion App</a>
+          <a href="/shop#method" class="footer-link">The M.I.R.R.O.R. Method</a>
+          <a href="/shop#faq" class="footer-link">Journal FAQ</a>
+          <a href="/shop#waitlist" class="footer-link">Join the Waitlist</a>
         </div>
         <div class="footer-col">
           <span class="footer-col-label">Company</span>

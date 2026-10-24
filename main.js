@@ -78,7 +78,10 @@
       ['.app-phone-wrap', 0, '24px'],
       ['.mirror-item', 100, '26px'],
       ['.phase-card', 90, '26px'],
-      ['.contact-block', 90, '24px']
+      ['.contact-block', 90, '24px'],
+      ['.lh-tile', 120, '24px'],
+      ['.jp-hero .eyebrow, .jp-title, .jp-lead, .jp-hero .btn-primary, .jp-note, .jp-hero-img', 110, '20px'],
+      ['.jp-why .section-label, .jp-why .section-title, .jp-why .section-sub', 110, '20px']
     ];
 
     GROUPS.forEach(function (group) {
@@ -106,7 +109,7 @@
   /* ── The Mind sub-nav: mark the section in view ──
      Pure enhancement. Without IntersectionObserver the links still jump to the
      right place; they just never highlight. */
-  var subLinks = document.querySelectorAll('.mind-subnav-links a');
+  var subLinks = document.querySelectorAll('.mind-subnav-links a, .jp-nav-links a');
   if (subLinks.length && 'IntersectionObserver' in window) {
     var byId = {};
     subLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });

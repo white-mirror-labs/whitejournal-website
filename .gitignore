@@ -5,3 +5,5 @@ node_modules/
 .vercel
 .claude/worktrees/
 .playwright-mcp/
+
+.superpowers/
