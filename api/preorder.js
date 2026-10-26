@@ -3,8 +3,8 @@ const { Resend } = require('resend');
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const PHONE = '+20 101 818 6653';
-const PRODUCTS = { physical: 'Physical journal', digital: 'Digital edition', both: 'Physical journal + Digital edition' };
-const PRODUCTS_AR = { physical: 'الدفتر الورقي', digital: 'النسخة الرقمية', both: 'الدفتر الورقي والنسخة الرقمية' };
+const PRODUCTS = { physical: 'Physical journal', digital: 'Digital edition' };
+const PRODUCTS_AR = { physical: 'الدفتر الورقي', digital: 'النسخة الرقمية' };
 
 const escapeHtml = (value) =>
   String(value).replace(/[&<>"']/g, (c) => ({
@@ -69,7 +69,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email address' });
   }
   const cleanProduct = PRODUCTS[product] ? product : 'physical';
-  if (cleanProduct !== 'digital' && !(address && city && governorate)) {
+  if (cleanProduct === 'physical' && !(address && city && governorate)) {
     return res.status(400).json({ error: 'Delivery address is required for the physical journal' });
   }
 
