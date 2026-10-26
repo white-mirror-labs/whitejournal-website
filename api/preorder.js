@@ -1,8 +1,12 @@
+const { randomUUID } = require('crypto');
 const { Resend } = require('resend');
+const { supabaseAdmin, reportIssue } = require('./_supabase');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const PHONE = '+20 101 818 6653';
+// Prices in EGP, set server-side so a tampered client cannot choose its own.
+const PRICES = { physical: 499, digital: 249 };
 const PRODUCTS = { physical: 'Physical journal', digital: 'Digital edition' };
 const PRODUCTS_AR = { physical: 'الدفتر الورقي', digital: 'النسخة الرقمية' };
 
@@ -79,12 +83,43 @@ module.exports = async function handler(req, res) {
     ? `<tr><td style="padding:12px 0;border-bottom:1px solid #e8e6e1;font-size:13px;color:#86868b;width:110px;">${label}</td><td style="padding:12px 0;border-bottom:1px solid #e8e6e1;font-size:14px;">${escapeHtml(value).slice(0, 300)}</td></tr>`
     : '';
 
+  // The orders table is what the admin dashboard reads: a 'pending' row shows
+  // under Orders > Pending until someone calls the customer. Best-effort — the
+  // team email below still carries the order if the write fails.
+  let recorded = false;
+  const admin = supabaseAdmin();
+  if (admin) {
+    const { error: insertErr } = await admin.from('orders').insert({
+      product: cleanProduct === 'digital' ? 'digital' : 'journal',
+      quantity: 1,
+      amount_egp: PRICES[cleanProduct],
+      status: 'pending',
+      order_token: `preorder_${randomUUID()}`,
+      customer_email: cleanEmail,
+      lang: cleanLang,
+      shipping_name: String(name).trim().slice(0, 200),
+      shipping_phone: String(phone).trim().slice(0, 40),
+      shipping_address: cleanProduct === 'digital' ? null
+        : [address, city, governorate].map((p) => String(p).trim()).filter(Boolean).join(', ').slice(0, 500),
+      notes: 'Website pre-order request. Call the customer to confirm and arrange payment.',
+    });
+    if (insertErr) {
+      console.error('Preorder record failed:', insertErr.message);
+      await reportIssue('preorder_record_failed', 'critical',
+        'Website pre-order could not be recorded', { customer: String(name).slice(0, 100), error: insertErr.message });
+    } else {
+      recorded = true;
+    }
+  } else {
+    console.error('Preorder record skipped: Supabase env missing');
+  }
+
   try {
     const { error } = await resend.emails.send({
       from: 'White Mirror <noreply@whitemirrorlabs.com>',
       to: ['hello@whitemirrorlabs.com'],
       reply_to: cleanEmail,
-      subject: `New Pre-order — ${String(name).replace(/[\r\n]+/g, ' ').slice(0, 100)} — ${PRODUCTS[cleanProduct]}`,
+      subject: `New Pre-order${recorded ? '' : ' (NOT STORED)'} — ${String(name).replace(/[\r\n]+/g, ' ').slice(0, 100)} — ${PRODUCTS[cleanProduct]}`,
       html: `
         <div style="font-family:sans-serif;max-width:520px;margin:0 auto;color:#0a0a0a;">
           <h2 style="font-size:18px;font-weight:600;margin-bottom:24px;">New Pre-order Request</h2>
@@ -98,7 +133,7 @@ module.exports = async function handler(req, res) {
             ${row('Governorate', cleanProduct === 'digital' ? '' : String(governorate))}
             ${row('Language', cleanLang)}
           </table>
-          <p style="margin-top:24px;font-size:12px;color:#aeaeb2;">Call the customer to confirm the order and payment.</p>
+          <p style="margin-top:24px;font-size:12px;color:#aeaeb2;">${recorded ? 'Saved as a pending order in the admin dashboard. ' : 'NOT saved to the dashboard: this email is the only copy. '}Call the customer to confirm the order and payment.</p>
         </div>`,
     });
     if (error) {
