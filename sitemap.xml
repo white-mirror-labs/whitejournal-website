@@ -141,4 +141,18 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/guides/ar/what-is-reflective-journaling" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/guides/what-is-reflective-journaling" />
   </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/preorder</loc>
+    <lastmod>2026-10-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/preorder" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/preorder-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/preorder" />
+  </url>
+  <url>
+    <loc>https://www.whitemirrorlabs.com/preorder-ar</loc>
+    <lastmod>2026-10-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.whitemirrorlabs.com/preorder" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.whitemirrorlabs.com/preorder-ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.whitemirrorlabs.com/preorder" />
+  </url>
 </urlset>

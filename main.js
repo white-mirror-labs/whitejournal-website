@@ -180,3 +180,58 @@
     alert(errorMsg);
   });
 })();
+
+/* ── Pre-order ──
+   Shared by /preorder and /preorder-ar. The delivery fields only apply to the
+   physical journal, so they hide (and stop being required) for digital-only. */
+(function () {
+  'use strict';
+  var form = document.getElementById('preorder-form');
+  if (!form) return;
+
+  var ship = document.getElementById('po-ship');
+  var shipInputs = ship.querySelectorAll('input');
+  function syncShip() {
+    var digital = form.elements.product.value === 'digital';
+    ship.hidden = digital;
+    shipInputs.forEach(function (i) { i.required = !digital; });
+  }
+  form.addEventListener('change', syncShip);
+  syncShip();
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('preorder-submit');
+    var label = btn.textContent;
+    var errorMsg = form.dataset.error || 'Something went wrong. Please email us at hello@whitemirrorlabs.com';
+    btn.textContent = form.dataset.busy || 'Submitting…';
+    btn.disabled = true;
+
+    var val = function (id) { return document.getElementById(id).value.trim(); };
+    var body = {
+      product: form.elements.product.value,
+      name: val('po-name'), email: val('po-email'), phone: val('po-phone'),
+      address: val('po-address'), city: val('po-city'), governorate: val('po-gov'),
+      lang: document.documentElement.lang === 'ar' ? 'ar' : 'en',
+      company: val('po-company')
+    };
+
+    try {
+      var res = await fetch('/api/preorder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) {
+        if (window.va) window.va('event', { name: 'preorder_submit', data: { lang: body.lang, product: body.product } });
+        form.classList.add('hidden');
+        document.getElementById('preorder-success').classList.remove('hidden');
+        return;
+      }
+    } catch (err) { /* fall through to the error state */ }
+
+    btn.textContent = label;
+    btn.disabled = false;
+    alert(errorMsg);
+  });
+})();
