@@ -5,6 +5,26 @@ Written as a hand-off: the next engineer (Opus) should be able to execute this w
 
 > **Before committing this file:** everything tracked in this repo is served publicly (see P0-1). Land the `.vercelignore` from P0-1 in the same commit, or keep this file untracked.
 
+## 0. Status (updated 2026-11-16)
+
+Owner decisions: **remove Google Analytics**; **update the legal text** for the digital edition; **`/api/pay` and `/api/waitlist` are unused**, delete them.
+
+| Item | Status |
+|---|---|
+| P0-1 internal files public | Done (PR 3, live) |
+| P0-2 Google Analytics vs privacy policy | Done: GA removed from all pages and the CSP |
+| P0-3 digital edition missing from Terms/Refund | Draft on its own branch, awaiting owner sign-off |
+| P0-4 broken guide links | Done (PR 3, live) |
+| P0-5 API abuse | Partly: unused `pay`/`waitlist` APIs deleted, CORS removed, dedupe + phone check added. **Open:** Vercel Firewall rate-limit rule on `/api/*` (dashboard change, needs owner go-ahead) |
+| P0-6 email in URL | Done on the site: email read from `?email=` or `#email=`, removed from the address bar before analytics loads. **Open:** app should link with `#email=` so the address never reaches server logs |
+| P1-1 pre-order endpoint | Done, with unit tests (`npm test`) |
+| P1-2 stale copy and schema | Done: waitlist CTAs and "coming soon" replaced, `Offer` added to Product schema, sitemap dates. Title/description length trims not done |
+| P1-3 pre-order UX | Done: language switch, inline error, phone validation. **Open:** Arabic `delete-account` page |
+| P1-4 performance | Partly: font preloads, hero `fetchpriority`. Inter weight mapping checked: variable font, no bug. Dead CSS not removed (wait for P2-1) |
+| P1-5 CSP and headers | Done: `script-src 'self'` (inline scripts moved to `head.js`), dropped stray hosts, added `object-src`, `base-uri`, `form-action`, `frame-ancestors`, Permissions-Policy |
+| P1-6 dependencies | Done: Resend 6, `npm audit` clean, Node pinned to 24.x |
+| P2-1, P2-2 | Not started. P2-2 has a start: `test/preorder.test.js` |
+
 ## 1. What this site is
 
 - Static HTML/CSS/JS on Vercel, no build step. 26 pages: EN + AR (RTL) for home, shop, pre-order, legal, 4 guides + index; plus `404`, `delete-account`, `shop-success(-ar)`.

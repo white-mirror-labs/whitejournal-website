@@ -2,15 +2,6 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W7R7KBK9QC"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-W7R7KBK9QC');
-  </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="اطلب جورنال White Mirror مسبقًا: دفتر ورقي مع تطبيق مرافق، ٤٩٩ جنيه شاملة التوصيل داخل مصر. للاستفسار اتصل على +20 101 818 6653." />
@@ -36,19 +27,11 @@
   <meta name="twitter:description" content="اطلب جورنال White Mirror مسبقًا: دفتر ورقي مع تطبيق مرافق، ٤٩٩ جنيه شاملة التوصيل داخل مصر. للاستفسار اتصل على +20 101 818 6653." />
   <meta name="twitter:image" content="https://www.whitemirrorlabs.com/assets/og-labs.jpg" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"White Mirror Journal","brand":{"@type":"Brand","name":"White Mirror Labs"},"image":"https://www.whitemirrorlabs.com/assets/og-labs.jpg","description":"A physical journal for self-reflection with a companion journaling app, built on the M.I.R.R.O.R. method.","offers":{"@type":"Offer","url":"https://www.whitemirrorlabs.com/preorder-ar","priceCurrency":"EGP","price":"499","availability":"https://schema.org/PreOrder","seller":{"@type":"Organization","name":"White Mirror Labs","telephone":"+201018186653"}}}</script>
+  <link rel="preload" href="/fonts/NotoNaskhArabic-normal-400-arabic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/IBMPlexSansArabic-normal-400-arabic.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
-  <script>
-    /* Same opt-in as the English page: reveal animations only with IntersectionObserver
-       and without reduced motion, so content is never left hidden. */
-    (function () {
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if ('IntersectionObserver' in window && !reduce) {
-        document.documentElement.classList.add('has-motion');
-      }
-    })();
-  </script>
-  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script src="/head.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
@@ -63,7 +46,7 @@
         <a href="/guides/ar" class="nav-link">الدليل</a>
         <a href="/ar#about" class="nav-link">عن الشركة</a>
         <a href="/ar#contact" class="nav-link">تواصل</a>
-        <a href="/shop" class="nav-link" lang="en" hreflang="en">English</a>
+        <a href="/preorder" class="nav-link" lang="en" hreflang="en">English</a>
       </div>
       <button class="nav-hamburger" id="hamburger" aria-label="القائمة" aria-expanded="false">
         <span></span><span></span>
@@ -74,7 +57,7 @@
       <a href="/guides/ar" class="mobile-link">الدليل</a>
       <a href="/ar#about" class="mobile-link">عن الشركة</a>
       <a href="/ar#contact" class="mobile-link">تواصل</a>
-      <a href="/shop" class="mobile-link" lang="en" hreflang="en">English</a>
+      <a href="/preorder" class="mobile-link" lang="en" hreflang="en">English</a>
     </div>
     <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-fill"></span></div>
   </nav>
@@ -131,7 +114,7 @@
           <h2 class="section-title">احجز نسختك.</h2>
           <p class="section-sub">لا يتم أي دفع في هذه الصفحة. سنتصل بك على الرقم الذي تكتبه لتأكيد الطلب وطريقة الدفع.</p>
         </div>
-        <form class="waitlist-form" id="preorder-form" data-busy="جارٍ الإرسال…" data-error="حدث خطأ. اتصل بنا على +20 101 818 6653 أو راسلنا على hello@whitemirrorlabs.com">
+        <form class="waitlist-form" id="preorder-form" data-phone-error="من فضلك اكتب رقم هاتف صحيح، مثل ‎+20 101 234 5678." data-busy="جارٍ الإرسال…" data-error="حدث خطأ. اتصل بنا على +20 101 818 6653 أو راسلنا على hello@whitemirrorlabs.com">
           <fieldset class="po-choice">
             <legend class="waitlist-label">النسخة</legend>
             <label class="po-opt"><input type="radio" name="product" value="physical" checked /><span>الدفتر الورقي &middot; ٤٩٩ جنيه</span></label>
@@ -234,12 +217,6 @@
   </footer>
 
   <script src="main.js"></script>
-  <script>
-    (function () {
-      var email = new URLSearchParams(window.location.search).get('email');
-      if (email) document.getElementById('po-email').value = email;
-    })();
-  </script>
 
 </body>
 </html>

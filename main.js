@@ -136,54 +136,11 @@
   }
 })();
 
-/* ── Waitlist ──
-   Shared by the English and Arabic homepages. Copy for the busy and error
-   states comes from data attributes so each page keeps its own language. */
-(function () {
-  'use strict';
-  var form = document.getElementById('waitlist-form');
-  if (!form) return;
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    var btn = document.getElementById('waitlist-submit');
-    var label = btn.textContent;
-    var errorMsg = form.dataset.error || 'Something went wrong. Please email us at hello@whitemirrorlabs.com';
-    btn.textContent = form.dataset.busy || 'Submitting…';
-    btn.disabled = true;
-
-    var body = {
-      name:  document.getElementById('wl-name').value.trim(),
-      email: document.getElementById('wl-email').value.trim(),
-      phone: document.getElementById('wl-phone').value.trim(),
-      lang:  document.documentElement.lang === 'ar' ? 'ar' : 'en',
-      source: window.location.pathname,
-      company: (document.getElementById('wl-company') || {}).value || ''
-    };
-
-    try {
-      var res = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-      if (res.ok) {
-        if (window.va) window.va('event', { name: 'waitlist_signup', data: { lang: body.lang, page: body.source } });
-        form.classList.add('hidden');
-        document.getElementById('waitlist-success').classList.remove('hidden');
-        return;
-      }
-    } catch (err) { /* fall through to the error state */ }
-
-    btn.textContent = label;
-    btn.disabled = false;
-    alert(errorMsg);
-  });
-})();
-
 /* ── Pre-order ──
    Shared by /preorder and /preorder-ar. The delivery fields only apply to the
-   physical journal, so they hide (and stop being required) for digital-only. */
+   physical journal, so they hide (and stop being required) for digital-only.
+   Copy for the busy, error and phone states comes from data attributes so
+   each page keeps its own language. */
 (function () {
   'use strict';
   var form = document.getElementById('preorder-form');
@@ -199,11 +156,44 @@
   form.addEventListener('change', syncShip);
   syncShip();
 
+  // Email handed over by the app; head.js already took it out of the URL.
+  var emailInput = document.getElementById('po-email');
+  if (window.wmPrefillEmail && !emailInput.value) emailInput.value = window.wmPrefillEmail;
+
+  var btn = document.getElementById('preorder-submit');
+  var phone = document.getElementById('po-phone');
+  var errorBox = document.createElement('p');
+  errorBox.className = 'po-error';
+  errorBox.setAttribute('role', 'alert');
+  errorBox.hidden = true;
+  btn.parentNode.insertBefore(errorBox, btn);
+
+  function showError(msg) { errorBox.textContent = msg; errorBox.hidden = false; }
+  function clearError() { errorBox.hidden = true; errorBox.textContent = ''; }
+
+  // 8 to 15 digits, optional leading +, spaces and dashes allowed.
+  function phoneOk(v) {
+    var digits = v.replace(/[\s\-()]/g, '');
+    return /^\+?\d{8,15}$/.test(digits);
+  }
+  phone.addEventListener('input', function () { phone.setCustomValidity(''); });
+
+  // One id per filled-in form, reused on retry, so a double submit or a
+  // retry after a timeout cannot create a second order.
+  var requestId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : null;
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    var btn = document.getElementById('preorder-submit');
+    clearError();
+
+    if (!phoneOk(phone.value.trim())) {
+      phone.setCustomValidity(form.dataset.phoneError || 'Please enter a valid phone number.');
+      phone.reportValidity();
+      return;
+    }
+
     var label = btn.textContent;
-    var errorMsg = form.dataset.error || 'Something went wrong. Please email us at hello@whitemirrorlabs.com';
+    var errorMsg = form.dataset.error || 'Something went wrong. Please call +20 101 818 6653 or email hello@whitemirrorlabs.com';
     btn.textContent = form.dataset.busy || 'Submitting…';
     btn.disabled = true;
 
@@ -213,7 +203,8 @@
       name: val('po-name'), email: val('po-email'), phone: val('po-phone'),
       address: val('po-address'), city: val('po-city'), governorate: val('po-gov'),
       lang: document.documentElement.lang === 'ar' ? 'ar' : 'en',
-      company: val('po-company')
+      company: val('po-company'),
+      request_id: requestId
     };
 
     try {
@@ -225,13 +216,16 @@
       if (res.ok) {
         if (window.va) window.va('event', { name: 'preorder_submit', data: { lang: body.lang, product: body.product } });
         form.classList.add('hidden');
-        document.getElementById('preorder-success').classList.remove('hidden');
+        var done = document.getElementById('preorder-success');
+        done.classList.remove('hidden');
+        done.setAttribute('tabindex', '-1');
+        done.focus();
         return;
       }
     } catch (err) { /* fall through to the error state */ }
 
     btn.textContent = label;
     btn.disabled = false;
-    alert(errorMsg);
+    showError(errorMsg);
   });
 })();
