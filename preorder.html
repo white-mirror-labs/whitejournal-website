@@ -2,15 +2,6 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W7R7KBK9QC"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-W7R7KBK9QC');
-  </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Pre-order White Mirror Journal: a physical journal with a companion app, 499 EGP including delivery in Egypt. Questions? Call +20 101 818 6653." />
@@ -37,21 +28,11 @@
   <meta name="twitter:description" content="Pre-order White Mirror Journal: a physical journal with a companion app, 499 EGP including delivery in Egypt. Questions? Call +20 101 818 6653." />
   <meta name="twitter:image" content="https://www.whitemirrorlabs.com/assets/og-labs.jpg" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"White Mirror Journal","brand":{"@type":"Brand","name":"White Mirror Labs"},"image":"https://www.whitemirrorlabs.com/assets/og-labs.jpg","description":"A physical journal for self-reflection with a companion journaling app, built on the M.I.R.R.O.R. method.","offers":{"@type":"Offer","url":"https://www.whitemirrorlabs.com/preorder","priceCurrency":"EGP","price":"499","availability":"https://schema.org/PreOrder","seller":{"@type":"Organization","name":"White Mirror Labs","telephone":"+201018186653"}}}</script>
+  <link rel="preload" href="/fonts/Lora-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Inter-normal-300-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
-  <script>
-  /* Opt in to reveal animations before first paint, so above-the-fold content
-     is never painted visible and then snapped to opacity 0. Without this class
-     every .reveal element stays plainly visible — which is also what happens
-     with JS off or reduced motion on. */
-  (function () {
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if ('IntersectionObserver' in window && !reduce) {
-      document.documentElement.classList.add('has-motion');
-    }
-  })();
-  </script>
-  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script src="/head.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
@@ -66,7 +47,7 @@
         <a href="/guides" class="nav-link">Guides</a>
         <a href="/#about" class="nav-link">About</a>
         <a href="/#contact" class="nav-link">Contact</a>
-        <a href="/shop-ar" class="nav-link" lang="ar" hreflang="ar">العربية</a>
+        <a href="/preorder-ar" class="nav-link" lang="ar" hreflang="ar">العربية</a>
       </div>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
         <span></span><span></span>
@@ -77,7 +58,7 @@
       <a href="/guides" class="mobile-link">Guides</a>
       <a href="/#about" class="mobile-link">About</a>
       <a href="/#contact" class="mobile-link">Contact</a>
-      <a href="/shop-ar" class="mobile-link" lang="ar" hreflang="ar">العربية</a>
+      <a href="/preorder-ar" class="mobile-link" lang="ar" hreflang="ar">العربية</a>
     </div>
     <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-fill"></span></div>
   </nav>
@@ -134,7 +115,7 @@
           <h2 class="section-title">Reserve your copy.</h2>
           <p class="section-sub">No payment is taken on this page. We call you on the number you give to confirm your order and how to pay.</p>
         </div>
-        <form class="waitlist-form" id="preorder-form" data-busy="Submitting…" data-error="Something went wrong. Please call +20 101 818 6653 or email hello@whitemirrorlabs.com">
+        <form class="waitlist-form" id="preorder-form" data-phone-error="Please enter a valid phone number, for example +20 101 234 5678." data-busy="Submitting…" data-error="Something went wrong. Please call +20 101 818 6653 or email hello@whitemirrorlabs.com">
           <fieldset class="po-choice">
             <legend class="waitlist-label">Edition</legend>
             <label class="po-opt"><input type="radio" name="product" value="physical" checked /><span>Physical journal &middot; 499 EGP</span></label>
@@ -239,12 +220,6 @@
 
   <script src="main.js"></script>
 
-  <script>
-    (function () {
-      var email = new URLSearchParams(window.location.search).get('email');
-      if (email) document.getElementById('po-email').value = email;
-    })();
-  </script>
 
 </body>
 </html>

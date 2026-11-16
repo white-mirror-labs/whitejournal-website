@@ -2,18 +2,26 @@ const { randomUUID } = require('crypto');
 const { Resend } = require('resend');
 const { supabaseAdmin, reportIssue } = require('./_supabase');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const PHONE = '+20 101 818 6653';
 // Prices in EGP, set server-side so a tampered client cannot choose its own.
 const PRICES = { physical: 499, digital: 249 };
 const PRODUCTS = { physical: 'Physical journal', digital: 'Digital edition' };
 const PRODUCTS_AR = { physical: 'الدفتر الورقي', digital: 'النسخة الرقمية' };
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const escapeHtml = (value) =>
   String(value).replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   })[c]);
+
+// Trimmed, single-line, length-capped text from an anonymous visitor.
+const clean = (value, max) =>
+  String(value ?? '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, max);
+
+// 8 to 15 digits, optional leading +; spaces, dashes and brackets ignored.
+const phoneOk = (value) => /^\+?\d{8,15}$/.test(String(value).replace(/[\s\-()]/g, ''));
 
 const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif";
 
@@ -54,59 +62,80 @@ function confirmationEmail(lang, firstName, product) {
 }
 
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Same-origin form only: no CORS headers, so other sites cannot drive this
+  // endpoint from a visitor's browser.
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  const body = req.body && typeof req.body === 'object' ? req.body : {};
 
-  const { name, email, phone, product, address, city, governorate, lang, company } = req.body || {};
+  // Honeypot: a visually hidden "company" field people never see. Bots fill
+  // every field; answer them as if it worked.
+  if (body.company) return res.status(200).json({ success: true });
 
-  // Honeypot, same as the waitlist form.
-  if (company) return res.status(200).json({ success: true });
+  const name = clean(body.name, 200);
+  const email = clean(body.email, 320).toLowerCase();
+  const phone = clean(body.phone, 40);
+  const product = PRODUCTS[body.product] ? body.product : 'physical';
+  const lang = body.lang === 'ar' ? 'ar' : 'en';
+  const address = clean(body.address, 300);
+  const city = clean(body.city, 100);
+  const governorate = clean(body.governorate, 100);
 
   if (!name || !email || !phone) {
     return res.status(400).json({ error: 'Name, email and phone are required' });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim())) {
+  if (!EMAIL_RE.test(email)) {
     return res.status(400).json({ error: 'Invalid email address' });
   }
-  const cleanProduct = PRODUCTS[product] ? product : 'physical';
-  if (cleanProduct === 'physical' && !(address && city && governorate)) {
+  if (!phoneOk(phone)) {
+    return res.status(400).json({ error: 'Invalid phone number' });
+  }
+  if (product === 'physical' && !(address && city && governorate)) {
     return res.status(400).json({ error: 'Delivery address is required for the physical journal' });
   }
 
-  const cleanEmail = String(email).trim().toLowerCase().slice(0, 320);
-  const cleanLang = lang === 'ar' ? 'ar' : 'en';
-  const row = (label, value) => value
-    ? `<tr><td style="padding:12px 0;border-bottom:1px solid #e8e6e1;font-size:13px;color:#86868b;width:110px;">${label}</td><td style="padding:12px 0;border-bottom:1px solid #e8e6e1;font-size:14px;">${escapeHtml(value).slice(0, 300)}</td></tr>`
-    : '';
+  // The browser sends one id per filled-in form and reuses it on retry. It
+  // becomes the order token, so a double submit or a retry after a timeout
+  // finds the first order instead of creating a second one.
+  const requestId = typeof body.request_id === 'string' && UUID_RE.test(body.request_id)
+    ? body.request_id.toLowerCase()
+    : randomUUID();
+  const orderToken = `preorder_${requestId}`;
 
-  // The orders table is what the admin dashboard reads: a 'pending' row shows
-  // under Orders > Pending until someone calls the customer. Best-effort — the
-  // team email below still carries the order if the write fails.
+  // 1. The orders table is what the admin dashboard reads: a 'pending' row
+  //    shows under Orders > Pending until someone calls the customer.
   let recorded = false;
   const admin = supabaseAdmin();
   if (admin) {
+    const { data: existing, error: lookupErr } = await admin
+      .from('orders').select('id').eq('order_token', orderToken).maybeSingle();
+    if (!lookupErr && existing) {
+      // Already have this exact submission: the team and the customer were
+      // told the first time.
+      return res.status(200).json({ success: true });
+    }
+
     const { error: insertErr } = await admin.from('orders').insert({
-      product: cleanProduct === 'digital' ? 'digital' : 'journal',
+      product: product === 'digital' ? 'digital' : 'journal',
       quantity: 1,
-      amount_egp: PRICES[cleanProduct],
+      amount_egp: PRICES[product],
       status: 'pending',
-      order_token: `preorder_${randomUUID()}`,
-      customer_email: cleanEmail,
-      lang: cleanLang,
-      shipping_name: String(name).trim().slice(0, 200),
-      shipping_phone: String(phone).trim().slice(0, 40),
-      shipping_address: cleanProduct === 'digital' ? null
-        : [address, city, governorate].map((p) => String(p).trim()).filter(Boolean).join(', ').slice(0, 500),
+      order_token: orderToken,
+      customer_email: email,
+      lang,
+      shipping_name: name,
+      shipping_phone: phone,
+      shipping_address: product === 'digital' ? null
+        : [address, city, governorate].filter(Boolean).join(', ').slice(0, 500),
       notes: 'Website pre-order request. Call the customer to confirm and arrange payment.',
     });
     if (insertErr) {
       console.error('Preorder record failed:', insertErr.message);
       await reportIssue('preorder_record_failed', 'critical',
-        'Website pre-order could not be recorded', { customer: String(name).slice(0, 100), error: insertErr.message });
+        'Website pre-order could not be recorded', { customer: name.slice(0, 100), error: insertErr.message });
     } else {
       recorded = true;
     }
@@ -114,51 +143,79 @@ module.exports = async function handler(req, res) {
     console.error('Preorder record skipped: Supabase env missing');
   }
 
-  try {
-    const { error } = await resend.emails.send({
-      from: 'White Mirror <noreply@whitemirrorlabs.com>',
-      to: ['hello@whitemirrorlabs.com'],
-      reply_to: cleanEmail,
-      subject: `New Pre-order${recorded ? '' : ' (NOT STORED)'} — ${String(name).replace(/[\r\n]+/g, ' ').slice(0, 100)} — ${PRODUCTS[cleanProduct]}`,
-      html: `
+  const apiKey = process.env.RESEND_API_KEY;
+  const resend = apiKey ? new Resend(apiKey) : null;
+  if (!resend) {
+    console.error('Preorder email skipped: RESEND_API_KEY missing');
+    await reportIssue('resend_not_configured', 'critical',
+      'Website pre-order emails are off: RESEND_API_KEY is not set', {});
+  }
+
+  // 2. Tell the team. If the database write failed, this email is the only
+  //    copy of the order.
+  let notified = false;
+  if (resend) {
+    const row = (label, value) => value
+      ? `<tr><td style="padding:12px 0;border-bottom:1px solid #e8e6e1;font-size:13px;color:#86868b;width:110px;">${label}</td><td style="padding:12px 0;border-bottom:1px solid #e8e6e1;font-size:14px;">${escapeHtml(value)}</td></tr>`
+      : '';
+    try {
+      const { error } = await resend.emails.send({
+        from: 'White Mirror <noreply@whitemirrorlabs.com>',
+        to: ['hello@whitemirrorlabs.com'],
+        replyTo: email,
+        subject: `New Pre-order${recorded ? '' : ' (NOT STORED)'} — ${name.slice(0, 100)} — ${PRODUCTS[product]}`,
+        html: `
         <div style="font-family:sans-serif;max-width:520px;margin:0 auto;color:#0a0a0a;">
           <h2 style="font-size:18px;font-weight:600;margin-bottom:24px;">New Pre-order Request</h2>
           <table style="width:100%;border-collapse:collapse;">
-            ${row('Edition', PRODUCTS[cleanProduct])}
-            ${row('Name', String(name))}
-            ${row('Email', cleanEmail)}
-            ${row('Phone', String(phone).slice(0, 40))}
-            ${row('Address', cleanProduct === 'digital' ? '' : String(address))}
-            ${row('City', cleanProduct === 'digital' ? '' : String(city))}
-            ${row('Governorate', cleanProduct === 'digital' ? '' : String(governorate))}
-            ${row('Language', cleanLang)}
+            ${row('Edition', PRODUCTS[product])}
+            ${row('Name', name)}
+            ${row('Email', email)}
+            ${row('Phone', phone)}
+            ${row('Address', product === 'digital' ? '' : address)}
+            ${row('City', product === 'digital' ? '' : city)}
+            ${row('Governorate', product === 'digital' ? '' : governorate)}
+            ${row('Language', lang)}
           </table>
           <p style="margin-top:24px;font-size:12px;color:#aeaeb2;">${recorded ? 'Saved as a pending order in the admin dashboard. ' : 'NOT saved to the dashboard: this email is the only copy. '}Call the customer to confirm the order and payment.</p>
         </div>`,
-    });
-    if (error) {
-      console.error('Preorder team email error:', error);
-      return res.status(500).json({ error: 'Server error' });
+      });
+      if (error) console.error('Preorder team email error:', error);
+      else notified = true;
+    } catch (err) {
+      console.error('Preorder team email error:', err && err.message);
     }
-  } catch (err) {
-    console.error('Preorder team email error:', err && err.message);
-    return res.status(500).json({ error: 'Server error' });
   }
 
-  // Customer confirmation: a failure is logged, never surfaced; the team already has the order.
-  try {
-    const firstName = escapeHtml(String(name).trim().split(/\s+/)[0]).slice(0, 60);
-    const mail = confirmationEmail(cleanLang, firstName, cleanProduct);
-    const { error } = await resend.emails.send({
-      from: 'White Mirror <noreply@whitemirrorlabs.com>',
-      to: [cleanEmail],
-      reply_to: 'hello@whitemirrorlabs.com',
-      subject: mail.subject,
-      html: mail.html,
-    });
-    if (error) console.error('Preorder confirm error:', error);
-  } catch (err) {
-    console.error('Preorder confirm error:', err && err.message);
+  // The order exists somewhere the team will see it: the dashboard row or
+  // the email. Only when neither happened does the visitor see an error;
+  // reporting a failure after a saved order would make them submit again.
+  if (!recorded && !notified) {
+    await reportIssue('preorder_lost', 'critical',
+      'Website pre-order was neither stored nor emailed', { customer: name.slice(0, 100) });
+    return res.status(500).json({ error: 'Server error' });
+  }
+  if (!notified) {
+    await reportIssue('preorder_team_email_failed', 'error',
+      'Website pre-order saved, but the team email failed', { order_token: orderToken });
+  }
+
+  // 3. Customer confirmation: a failure is logged, never surfaced.
+  if (resend) {
+    try {
+      const firstName = escapeHtml(name.split(/\s+/)[0]).slice(0, 60);
+      const mail = confirmationEmail(lang, firstName, product);
+      const { error } = await resend.emails.send({
+        from: 'White Mirror <noreply@whitemirrorlabs.com>',
+        to: [email],
+        replyTo: 'hello@whitemirrorlabs.com',
+        subject: mail.subject,
+        html: mail.html,
+      });
+      if (error) console.error('Preorder confirm error:', error);
+    } catch (err) {
+      console.error('Preorder confirm error:', err && err.message);
+    }
   }
 
   return res.status(200).json({ success: true });

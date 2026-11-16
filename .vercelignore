@@ -8,3 +8,4 @@ docs/
 rea/
 *.md
 .DS_Store
+test/
