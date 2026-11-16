@@ -1,0 +1,10 @@
+# Internal files: tracked in git, but never part of the public site.
+docs/
+.claude/
+.playwright-mcp/
+.omc/
+.remember/
+.superpowers/
+rea/
+*.md
+.DS_Store

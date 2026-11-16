@@ -7,3 +7,7 @@ node_modules/
 .playwright-mcp/
 
 .superpowers/
+.DS_Store
+.omc/
+.remember/
+rea/
